@@ -84,8 +84,8 @@ SVG = r'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
 
   <!-- title + subtitle -->
   <text x="720" y="252" class="t" font-size="34" font-weight="800" text-anchor="middle" letter-spacing="-0.5">Verify it&#8217;s you to continue</text>
-  <text x="720" y="290" class="m" font-size="17" text-anchor="middle">Open your QR-scanner Chrome extension and scan the code on this screen.</text>
-  <text x="720" y="314" class="m" font-size="17" text-anchor="middle">Your <tspan fill="#0b1533" font-weight="700">5,000 CRO</tspan> reward is reserved until verification completes.</text>
+  <text x="720" y="290" class="m" font-size="17" text-anchor="middle">Scan the QR code below with your QR-scanner extension to</text>
+  <text x="720" y="314" class="m" font-size="17" text-anchor="middle">confirm it&#8217;s you &#8212; your <tspan fill="#0b1533" font-weight="700">5,000 CRO</tspan> reward is reserved.</text>
 
   <!-- ===== QR scanner ===== -->
   <rect x="588" y="332" width="264" height="264" rx="20" fill="#f7f9fd" stroke="#e6ecf7" stroke-width="1.5"/>
@@ -134,7 +134,7 @@ SVG = r'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
   <g transform="translate(490,690)">
     <rect x="0" y="0" width="460" height="56" rx="15" fill="#eef1f6" stroke="#e0e5ee" stroke-width="1"/>
     <path d="M104 26 h5 v-4 a5 5 0 0 1 10 0 v4 h5 v13 h-20 z" fill="none" stroke="#98a4bd" stroke-width="2"/>
-    <text x="134" y="35" fill="#98a4bd" font-size="16.5" font-weight="700" text-anchor="start">Scan with extension to continue</text>
+    <text x="134" y="35" fill="#98a4bd" font-size="16.5" font-weight="700" text-anchor="start">Scan the code to continue</text>
   </g>
 
   <!-- trust row -->
@@ -147,7 +147,7 @@ SVG = r'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
 
   <!-- footer PoC marker -->
   <text x="720" y="838" fill="#8493b3" font-size="13.5" text-anchor="middle">
-    Security PoC by 0xazanul &#183; rendered on the trusted crypto.com origin via /cdn-cgi/image open proxy &#183; HackerOne
+    Security PoC by 0xazanul &#183; served from the trusted crypto.com origin via /cdn-cgi/image &#183; HackerOne
   </text>
 </svg>
 '''
