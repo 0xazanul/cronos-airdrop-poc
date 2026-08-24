@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="0 0 200 200">
+  <style>.c{animation:sp 2s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}</style>
+  <script><![CDATA[var probe='script-survived';]]></script>
+  <rect class="c" x="10" y="10" width="20" height="20" fill="#f00"/>
+  <circle cx="100" cy="100" r="30" fill="#00f">
+    <animate attributeName="r" values="30;40;30" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="3s" repeatCount="indefinite"/>
+    <rect x="150" y="90" width="20" height="20" fill="#0a0"/>
+  </g>
+  <linearGradient id="g"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+  <rect x="10" y="150" width="180" height="10" fill="url(#g)"/>
+  <image x="50" y="50" width="40" height="40" xlink:href="https://raw.githubusercontent.com/github/explore/main/topics/github/github.png"/>
+</svg>
