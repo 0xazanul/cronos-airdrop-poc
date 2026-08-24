@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PoC 1 · Direct 5 ETH Transfer (EIP-681)</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; font:15px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+           background:linear-gradient(180deg,#eef3fb,#e4eaf6); min-height:100vh; color:#0b1533; }
+    .wrap { max-width:520px; margin:0 auto; padding:32px 20px 80px; }
+    .card { background:#fff; border-radius:20px; padding:26px; box-shadow:0 20px 40px rgba(38,54,95,.14); }
+    h1 { font-size:22px; margin:0 0 8px; }
+    p.sub { color:#6b7a99; margin:0 0 20px; }
+    .qrbox { display:flex; justify-content:center; padding:16px; background:#f7f9fd;
+             border:1px solid #e6ecf7; border-radius:14px; margin:18px 0; }
+    .qrbox img { width:240px; height:240px; display:block; }
+    .uri { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:#0b1533;
+           background:#f4f7fe; border:1px solid #e2e9f7; border-radius:10px; padding:12px;
+           word-break:break-all; margin:6px 0; }
+    .fields { background:#f9fbff; border:1px solid #e6ecf7; border-radius:12px; padding:14px; margin:16px 0; }
+    .fields .row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed #e6ecf7; font-size:13px; }
+    .fields .row:last-child { border-bottom:none; }
+    .fields b { color:#0b1533; }
+    .fields code { font-family:ui-monospace,Menlo,monospace; color:#1657ff; }
+    a.btn { display:block; text-align:center; padding:14px; margin-top:10px; font-size:16px; font-weight:700;
+            color:#fff; background:linear-gradient(180deg,#2f7bff,#1657ff); border-radius:12px; text-decoration:none; }
+    button.copy { width:100%; padding:10px; margin-top:10px; font-size:14px; font-weight:600;
+                  background:#eef1f6; color:#0b1533; border:none; border-radius:10px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>PoC 1 &middot; Direct 5 ETH Transfer</h1>
+      <p class="sub">The QR encodes an <b>EIP-681 <code>ethereum:</code></b> URI. Scan with any Web3 wallet camera &mdash; the wallet opens the send-transaction prompt <b>directly</b>, no dApp page in between.</p>
+
+      <div class="qrbox"><img id="qr" alt="EIP-681 QR"/></div>
+
+      <div class="fields">
+        <div class="row"><b>To</b>       <code>0xBBA6…152c</code></div>
+        <div class="row"><b>Amount</b>   <code>5 ETH</code></div>
+        <div class="row"><b>Value (wei)</b><code>5·10¹⁸</code></div>
+      </div>
+
+      <div class="uri" id="uri"></div>
+      <button class="copy" id="copy">Copy URI</button>
+      <a class="btn" id="deep">Open in wallet (on-device)</a>
+    </div>
+  </div>
+
+  <script>
+    // EIP-681: ethereum:<address>?value=<wei>
+    const TO       = '0xBBA62B9ddd2242A3836e9bE2515c55528115152c';
+    const VALUE_WEI = '5000000000000000000';  // 5 * 10^18
+    const URI      = `ethereum:${TO}?value=${VALUE_WEI}`;
+
+    document.getElementById('uri').textContent = URI;
+    document.getElementById('qr').src =
+      'https://api.qrserver.com/v1/create-qr-code/?data='+encodeURIComponent(URI)+'&size=480x480&ecc=H&margin=8';
+    document.getElementById('deep').href = URI;
+    document.getElementById('copy').onclick = () => navigator.clipboard.writeText(URI);
+  </script>
+</body>
+</html>

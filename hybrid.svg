@@ -1,0 +1,309 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="100%" height="100%" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid meet"
+     font-family="'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eef3fb"/><stop offset="1" stop-color="#e4eaf6"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="720" cy="120" r="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#dbe6ff" stop-opacity="0.9"/><stop offset="1" stop-color="#dbe6ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#1657ff"/>
+    </linearGradient>
+    <linearGradient id="brandSoft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eaf1ff"/><stop offset="1" stop-color="#dbe6ff"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0"/>
+      <stop offset="0.75" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="phoneFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7faff"/><stop offset="1" stop-color="#e6eefc"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#1657ff"/>
+    </linearGradient>
+    <radialGradient id="pulse" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="24" stdDeviation="34" flood-color="#26365f" flood-opacity="0.22"/>
+    </filter>
+    <filter id="navShadow" x="-5%" y="-40%" width="110%" height="220%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#26365f" flood-opacity="0.10"/>
+    </filter>
+    <filter id="phoneShadow" x="-30%" y="-15%" width="160%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1a2955" flood-opacity="0.28"/>
+    </filter>
+    <clipPath id="scanClip"><rect x="856" y="322" width="256" height="256" rx="16"/></clipPath>
+    <clipPath id="phoneClip"><rect x="291" y="315" width="158" height="310" rx="26"/></clipPath>
+    <clipPath id="croClip"><circle cx="27" cy="23" r="16"/></clipPath>
+    <clipPath id="qrCenterClip"><circle cx="984" cy="450" r="20"/></clipPath>
+    <style>
+      .t{fill:#0b1533}.m{fill:#6b7a99}
+      @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+      @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+      .live{animation:blink 1.6s ease-in-out infinite}
+      .floaty{animation:floatY 3.4s ease-in-out infinite;transform-origin:center}
+    </style>
+  </defs>
+
+  <!-- backdrop -->
+  <rect x="-400" y="-300" width="2240" height="1500" fill="url(#bg)"/>
+  <rect x="-400" y="-300" width="2240" height="1500" fill="url(#halo)"/>
+
+  <!-- ================= NAVBAR ================= -->
+  <g filter="url(#navShadow)">
+    <rect x="0" y="0" width="1440" height="74" fill="#ffffff"/>
+  </g>
+  <rect x="0" y="73.5" width="1440" height="1" fill="#e6ecf7"/>
+  <!-- brand -->
+  <rect x="40" y="20" width="34" height="34" rx="9" fill="#0b1c4a"/>
+  <image x="40" y="20" width="34" height="34" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAUKADAAQAAAABAAAAUAAAAAAx4ExPAAAhVUlEQVR4Ac1dCbScVX3/32+ZfXn7krwsZCEBMQQQpEVlrdLS0wUrtUWxrT3mHKAe21rULhKrrbX1tOe01hZs0drqgVhbF1SKwUQBQYxJSGISIbwkhCQvb5t582b5vvmW29//znzvzcz75i2EBG7ezLfd9Xf/+73fRNBrJF3xvvvMQdN4XzQRpecOD7/lzOjkbYYh7Csuveh7mqEnq67/7/f88+9/+ZH7tyc/teUXCui2fC10XXstdIL7sOv+LW4skbRTqaSlm6YjNJ2sqhSapkkhRDoRNa3rPib833/fagvZXxPgcb8Ff70a6R0f2pbtXdnrffvrjw5VppwNUrh6j2Zfp+vCnZwuvb5o002CpLtq40V7dN2Muo77sG2Vn6lYtn/t9Zcd1ckzRkfzI9/+7F0jr0b/gzaN4OR8HqWU4vaPf2Wd7ukV0Ne7olH9I9Jz3UO7fmJIp0pkmPhE0SXPyPuZK0no1NOV2NSdjZNheKRL+qyhmdHOZHIbMr2qAL4qLAyWlMlkcnr1ymXTQmgljfyqoWt5TRNARyf1qYMouIf8kZ6UXhWsK8uaIEvTtYrQdaD96qbzwsJbt+4w7r33eu/Cmz5ySzRqfljXtOLBJx5b4fmAkvwuANIrJHlVqwLSA0Z6hMiMM2okll8CAHXSkYk/JIRvGHqOfJ8GexL5rmy8gtOpTZvW/5XryKRrOLu/vPX24fMF63lh4Wvv5XGTvPLt2YTru68zdX1S+rTGJ+DlVoBcGeMFrSGTAjBk9J4vyfWU7tDsqtdNuPY8mQZxaqSJfDoVTRhmlMqlYkjpc3frnFHgr3/wi326523wfF8+su2r/RVXE93d2Td3dGRvJ/Irx/bvG/SYtDwHoo45MegKQGL5Z8bULbHs9YBorqSRAHCgN+n1diaFZbslMxK/n3MlM7GfDnamThZKBX1w5YYny7ZlWsVY8Tv/9Ev2uYDx3FGg513uev4fWpZ9zPHF+0g3aOLUaZo4vE8RGxmQdTMpAG/mBk5wz/dwVFTX+ECdC7DzyHhJHxkFxcHMIc34Y5AkXbyuL9/fmcrFInG7Iy1/1aVqyiD3BAqNzankFbhxzgDUhXDKrj/sSW3KJypACWTAaqAuNAnCqxEcAweAIMReTmIJSjrXwckjCUGKusu+55d0jZyOnlhJxnS/b2VP6Su1TK/4d9D6WVX823/2pVVCatdAudoPfXXnnwjD7NCL4wlv/HjSJ82DhdItdQPKloGqA8bqFYKQRd8M93IvmOCUJoYiwXMxtKkGOD9bRDJNw40I32MbMmLKU44nxNDQwIGL1w6M27bjrN6w/A8TA2ZsTW64vGXLFsiPs0uvCAUOrV7m5XPlRMwwK6ZhrDVjkR5paVQpw2lQFId58l18GB0klmkMZgBi/XZN1tUBnqGsWpHFflcd14Cxw+OKdupivUR1CVMUo6bhw/y0/vEPnnF20rXedbTF27JlsbW2z7dkCmST5MV4Id4Fznzoa3tvjKUyKSqOpiPV8kVF2yuezpfvisdiHdVCTlYmzsD2wFhUK/zFSOHIo2L2U0fuHM7VNUDle1zGgBkjvRkzhnMtJXFrqWithZ7O9NFsNjMOTihbduV+mE9y7eqBUxvXrsjDdHLu23rbwaXU3Zh3yRT4Ynk47lPf8nI6UzKj0c8Kv9o/OZmn8SMvGBQB23k2VV1QG3wyMnHdlHhYSMpcaTiqm3zN7FwHkNlY1vMHz0OP9UlRk1PPgFtwoKlQASdjcqbL+QvoZOEC7tKaFV3Xci6nWt0hNblX6CKHy/MH4Mq1fd6ErRftcmwaQu2MkAK+P5Ay9C7wZY16WEk0JqYqTnwMMUlqD5f+DVGngFLHkHqFao8xhETEPyU5PNgEiFFAmoxK362gR2flzSw4xe/Ytk3/ym23eVfc+snPxxOx5aePH0sN798/KDXd1z1rUJMywv10Pa+uWutgKTwUAQA0EDorDOWT8ZGbDZpGfqbIgCq5HE+A0tSwrfsvxDNQZmjitrie4Min8F4gb9E/Eh6OqFcByfnwZ8zIVlGApvaihibXr+0f81xJfQOdX7js4rVPnsmVjAfuffuO0CZbbi7IwtsO3qYYKZlJdqfi8eyYpg1AGK8k3QS3lslTthpqVQDwQEJSpVK7yUj7wYDr+QJFwiAooPCcSYU/CCLIOLyUtgCGtGVqJNnGRL9qcxK0x30TVIVpyfSIlKk6tcnENOHM74aLmOkd6NLi2TSHzBaVuPY56dYPPHC55Qrn0MEjnUePHF/NZsWavvhdUVPvmJqYiJ06eQYAopMO2lF9mVNF7QZAEL5DV7/xUmQTlEnFaKAnHZI5GGTjI77HH0gGdWx81uYcfTl0ZoJGSpYq8dJIHhmZesHAaqSgRmZ7pk5YAeBkihqChgayparjabj/SCwWPWLq0unv6f5R1a3EuzOpvQObV5yoFHLiP//kjlJry6EUOG3ZNxmakYKbdRnp0V8WMOGG9x+AtAAlcZSElYMDRcGsuUBijnnvne8mTzNp88ZldNVFyxcocXaP79v2uPzO9w+A+CSdPDUGkGp9ZN0UJAaRJ0VAy9uwBI8cH0+qZ5r+64T8iYhPK4YGjpEtsyXHe79RjJQjdpJnYnEAOlW3YEQ0E7bvJJsSBFlCJoCD0JhhJzWjQZfaHMGyzLW5/DTpsTgVps69oz9dtOREvkTJuDmPUEHnuf/oGx/YLeQk+ShdsL5u41kpEokw/uVoVpbcVJIDlHNSKAk98c1vvgcj3yhZMUBMqMljJJYii+oyDH4I/dKbL6JMVyfFI6HNzenU2dxYt6pfe8tVG9Fpj7bv2FPjmNoIcK+OGF/zoPjDMKv7OCKwgfgkWZYX+f4Tuy+Edyg2blhxr12u3iWly+bOb7T2LXRECBulUXmHEhxMgbWWWsvOf82dUppXUgoLRfwx6zM9f8Gzewp3Q8UNa7qNEQpPEjKQfWnJ7qKSk4wlcymPVgjb8U0JMeX7freu63HIyOmwmkIBVHUwBSl3CzPDFQezpIBp37FaI3iuRymSTJKcNlQHI2B/FRAN68UreK+3K0WrlneTXbFJwKeTOhNAQ1LuJKs0JHRTaWQWkDyuhsTPOTjhIKTkuvjyFTU05KidtgNwFjBF4sg8AyKD2dKp1moBvBmPS71nJflOXhgwRxLR9k21Fj+b6zXLeyiVjNHkGFY+LWjaGOR3MzZzqw/HBvkUgCo/gA6VgTWanVsl03MNREV5nEFNl7KvwrI33YOZ4EJ+OLYtdA1CVE13U45zdlGACVOFsec4C0zyInugQmbIi4WwUADnIQuMmqmO5RaDGSRm7YUQcRzq64zTxjesl7lcUWom7KDzlNau6FEtjZyKwyIxQYFZsDKM8aao9yI7A+LBShbitB6vTYcWCgdQAYcxK3nB1npjCq+oMQefc3tYFIczgZPFFWmt4mVdR0wY+Eg8Zxg3SMeXhvCJ9eu56EY4gMoPPYvmIFPSkHlDA10yk4gKuEgvC4yzKYQlT+pblpURrJlMjFnk2lgSYcJYSmJVrqiQPeoWLVOvJxxANVcAkNnVa6XARfQAlNvZmaYrN63RpgpFipjhzSyippedRYvoNLimT2bTCd8rF/TSFKwQTGQjWQS6JezeTMOzdNuYbebxPCMLqp/Ju4QToXCvwE+y8EGUGJ+lUaHSXarLcLmW0HKQFXYbwfogu+rUJBEq5JoaRxXUG3aP64EExHctF4qHUtI8AIL6uKzRGhTlqhdIEUlncmXa/vg+nwfw3PBp3iS0QKHmx4aSYT51ZBJLFl5cgCfOqrrkeGWBI9vGiGo1Y9AIXNB60z12YfkDRVqehmEZkuYBMCT3Ym9hAMojMCNC8Io49mxoDYqYqcuHi8cJ5gFMHvYGmpMvoQRgT6pnARtxpoYRGhANKr7H94I86hTBcNSoQZbHsLIEhwAlGwo2N7Xgle/6WiRidIRlPDcAYk2jWCzRsUOHGAQxdTLBw5ltX3Ooe9kQUwWlUzGxvL8TY2weIFMRcFdGcUCCHoDWOaCBhL00dPj5E3SKQ1a8FSTYkWCAylxof0BWmJgQ01AcVZhVjQDPdmRxZzxvtl2dE4nh0m0ARBEOVSGW97JmDjNfKJSosO8Qt40qcGjCx6HXvykBNEzqzCbEmhV9Wqvhy6AxCJEoaAkn8EkVeAwiA5uIR2nHk/vpqd3Py2g0QuWRERSAnNXQkAraot0Ign0siBj0JYoQ7jYXZdGJoDEqaAyI1Z7ydziAtWZncy3hTARyBnWICEJgSK0MqmGApqkjDIzuYbwsJ7EkMKcV7gabQAwgjFl8ajUhIk4ulATWgAmblWQUGrcSj2Bpuj4cRh790P0qIIAYEzCo64HVOY3Me6M262ifDekmEgiKhQOoFEf9EVvwTfZTYz3cPU58r3betXyFr8EGSyTi1N2VQUTMp4O7fqI7bNTywDg3Bjo6XqBCqSrecvka7f3vuo7v8qM5icHjFLTEG4yGT05SR0eKnvreU7TjxAnNSiNooQQrAghGTNUfwybCt914NWK/Efrx7sN0/MQkCBThfgsxydbxcFnVSCBmcM330HfEBwU2d5qwx4Mu1PLWv8MBnOkucjFbNA0upB6WX7wxEo8KRYTT0UEXVBYBmzGATgmulIvOMEWC3Zg6onG4WjazJSLAsRqlNvWszQU3lU3HKY34pvDiiGsAFNxTXQSbyyqUpWuTFRFkQ/lKAFmZxtJDrkSS45HQKSrMxi6qSjjyOcrWEleGazVxzBVBPr4/N7UBMMhYr0iB2HAvOOVeo+FMJkHLBroUK/7CDVdp2M9MkVhUxpIJLD349JMuDa6VTsMnxujAkVGAaFJudEw4xSJZhTzlpm3g72AXahJjCTo800jTCduUjz11iNIAcWR8CoPnP586e7tl2arSz120Rqwd7INiEbT56guljkWmNR1pkYOyKVWr9PUn92D5Wpe25YCyeEWTx1AHh5tWhIbrOlWCGHgjGIOM7WJz0/wAMqnPocCWSsBS3ZkeuuxNV1IhX5Z/++d3iCy2BCDNIPHg69aCa3T6/g9204Hh75KeStPkKIR+oUCl/BhsxhJNQ+l0dSSwmjlTrKWh2iUrm+0/PEjJZJyOvjQOoCAjQUH9Q4MyN1WiW9/xZvq1m98gqpiQCwY6VGWjby3RJKgQgQ36v2efl+l0Qk6OjoNQrZqmClqaocL6DQYxkOkN4wmy83F+AFXO+uwEpbhCBhZ+YswHUKByzbQBQNm3bAsszDtvseeRNSX8YTZPKqUKlDpCXGWXMmArs1KlPBx8H2CxQkDQUimRlpaCFpuOTKAR1AUlpJSIKRAmqJqUn64Kt+JSuVwRZYgR7CNSRMT5LbRXRpgLfaSo7QrPLGNVroo4B2JumFgWN+0ShAAeKrKcq+VQKLzk8rfvhzS+pLY/r7FqDBGmh4hC9kxW6FMf/x0yEKpfv7qbbrjqQmU8J3GtKkXPg8rZreKB2LarBsMu1htu3SpLZVtuuni1uPLyC0UVnsMn/+jXsBg0v+czmS/SxTd9SEojIlcO9WurlmHlAXsN/vXjt4sogI1i0rDBCYzJof2aUlDKHl3HtjeaAogGwP/bzz3ib3/qsIiBgB/f+RRICRw6S221QYNIVqxZOdbT12dBSR3Z+42P3tCIBp+3oUBmXXy4/driwmw5dESydsIHK6wqG7Z2EAPXLgUhJpYlNlg+AZDYK+V1WV6j5bBTsDLWro7G+w7ahiEDSmSFC1sP9XZAJrKcnU3B9LH4wrn6A2dAkWXSMSX2yhYmlAcCR1PtHgsRV2AkCVPKrVZ5g/vcFA4gzxwGptR4YxkgkE6b8CL6/Uq2QpsvHtIGBjopiwXzxST2HpIxQ2nmTCYlRdSVZiQqePClyuI2AwBquOcxdE+jzkwSC/VZXmuZRWuejrBJxGKFM99w9QbtgpV9MjeREx95+hkiBF6V4wDbcYYxYXtCBGGHiGegbChWoTeVF6JmjSmRZV69fwAQPqFcPtgnxyI5sQmL5OyGLTapnfYgG3b0E1ACuulTCtSYxjkHQINmFqpPh53KGyPSqTg0dxpRFzj8i0hcf6y+tPrGy9bTpZf4YnRkhD7Cexe5QuwsY2pWCM/UVzNvHNdtJO+Zp+EAzjzGidJEdeqtjVBgaxg4G8rB4lBVTb41s09jBeHnbPiybOKkAgrQgLNSM7xMcJfNNqYmVQcmlQMOS01FbP4sVhyagAWgLA0eG3Oe0hd1guH+sShDQl9Dlcj8ACpWbpZtkwWbcj/eB2fXo0d/cJh6BztoWXearrnsgqWOAZ1C5BoraGtX9VEOZkxtfuavhjV8b29GQiHAxjMEu4D14c5fsOXp333uu7T96YN+QmfwfWynhU2pLIyG2vi6PsnoW8OD2crmB3A238wZyyBsCQS5uxSHQRwFSyTDdz3MlJnvpDbxiLzgZDGijPOoxfDQ4czXUvOzZMJEtDqJcBtkXp3B5ptBZpjmGmpXoQDyeoJSwaiYV/DnJG4wJmjbo7vhKvp00xVraPOFy+ZkW+wNZkWeiLF8WYX/mar4Hk+6g/OACniAZcQ12cZEIGHJELK4+ekLI8p+PHLoOfHC7j2w1jBWNd4AxeZeM1PDHdUcuxoCRDszBhTGlFvb6hBaDju3I/T03uf8wlSZerIRJSg4ABrYXs3dCLuCGcONIHG0mrXqFF7RNIyaAcwMw895WaDGPbX8fI1NP0pcBbXWqwku2x4dTPaRlyYoC+1dOHOazgy/iI3U2JjFG+HDElfMQQRYW2GP+V6bkvXs8/UMgjsVgzaEkBUICJRAGZydbbyFWRFsSBFhmowSUX6yQBV4EdVlCAJAKTBb2wjHc/J4txSOPAL2q7kNONjCdTEyZGWQ2StpI6K4ipnEgQ0JKuQ9OhwoV8GNduDVSwXkA1ORuzEntQWQbUsOFKjEI2pNIPuTJ09jK5ND+/dE6DMPPgHXtkwf/N0bYZ8lWnM3XfN6x53vvl7E41Gx/du76L3v+TSJWAwgYFD1SWPAlFD3RvhElVe9YNerY0jIfEW87dL1dMfb34ToN1zF8PGpcsFXPleg37vzHynSk5Gl0ydgUGKMLtt9bRKvh0CRQMsjo9asTetF2gIYVMlsrBZjQkBkP5bHFkF8L5tKKApZ/AYiSRw9KZcRiQFbEoKilOKwFteJShktrItQkcNffM6TiRMeC9xI8DtMKFuZMApYPF0omTCitYQmE/GYtGpBi8UWRbsuYnJz0/wAMmjMovXj3OK4E9XoxGSR/utrT1J1skS/edNm+JomeweIWrEympv42TWb1yhc4qByvKGjQvQPfOP7ZHH0HO6j5OUEBo4TTDARSWF7T5KSYMEP/cE7IJqqdP11l9BAZ5K8DDyTeSjwmX3H6EWEs3K5PFnjpwXWiQnvh4DrF4MflhM8D0F0rbaLtdajme+2ANYoDyPgNYZ5kkS8baxUlKPPHiP/pbwoQhEUwdZJzHY7AHlCNl6AmB0SeyIxLMIzaP/xrSeAGahQgHXUesxsw5LfH44kEKb36bfffT2ZCMx2ImyWji8cjOUI9lMAUVQtcop5UHyVbSa0swCA4AS2nxkBXuELS20BDMsceg+1M0VFAJibMqSFHVmIsihAkouINFfAxrATkF9SBpEeA4Yt754v2zzA+uSBfdMALo191qkuDk1VyEREB69wzQsgezqs0HzXIR0fNskYCB8af3EJ7eOPYYZ8DvRJU9FQAIUGuQMlwgXxMkpTgdYLpiaYB8LB1glhevTpL26HVtbpzZevk3ffft0CU0y0flUvrcPHBWijf3Y7KMugx761ix76350ksljr4F5Ml+mee26mu+6+nYrlCi3vzSixMh8BMXh5cEMXIi87HnmMHvj8ozARuiBCQbEAc1EJgDt49459bSj++mw2l1zsVDSXansFikBgoAOvz8WxStY2W8MDngCmEgaDg68sOthea006DN4q/G8LMpAxnQ88Lst1BlEiHdvc/GiGfAQfZgVrawsLXYfit4AdyAMLlgoXqp+fY/A/eOYwFovg5uFz5vpNsO+qtGKgYwkGdr0hbpdRqnMOR3AUwOHjmNM7Xtz6hy9sx5qxKfceOIpVLqzGYe3lZSdND43ZhbKwZHcCpC4w4zW/c1HEpAZ85CjWKeCdvLi8H8rEhY1m0zLUs5DYUZQIWar2FDJwbIdyYpMGjAy7GaKBTarFIWhhTeRr33tW9nR3iNOj2L3ALwUhhB9EV1Td831xM2BhIMB+CMuzUG4NBRDMN4liE4gacPQRkUZIQrWmzSNrn1hjwb3ArlCE9QFGEesQTAnoRNtCvB7CYTGmLl6zmEZgVQVXWUuqxGWxWQiy7+SLpxBLtGmovyYDWXm1htE4tMV1eehwNqaLpAHhxVF17jo4ZDbV6p29nj3jlvGODAYDShJyUpgR6ZQtUMbcFPSy6cm7/uLBO2ByasNHT24+fWbyLnhqzvCx8QhC6QusmdWqYZervyctN6wblAzOw/fdrfUh8BmW9j1/mp7cc5TisBnf/8H7qcikylTGrMsUMH5UFWPPiIPC6YROD3/jMwgCYANnX5ZWDTYHdI+fymGVr4jdVCV661vfC0MbVSlqZgDxCShY0QLf4+rVV617eM5vva+69PJRME5XPJH6wHW3vOWx/OlT4sufuP35WqbZ71AKhH9rAnusfItOqUeghRxD+aHsS6JhZjdO9cNsbcEZOoHtFoIVCgYu8bZ48GTOkX3nTuwywC8XEcWxyCGSvDsdmrLZ8JcRaGQoAtLKlILXwxEU3h/TmniHvoV+aqiPd0DICBQH/zIIu2wMHofiVGy0Dh4TYmBpMIWCerEYb0BgdIOIsejgpDzPTsp4lHPOSaEjgzn2hKlBCEqxW7rVx7jUResGfguL5X4uX1w2PlHYzLvteBOCGnhLtUwt+UKF9h06AfOmTN98bB9lYJLw4hLeHocj79NLIzm1Brxn1wu088lnMVD82BjcNAEPQyCAoMwXthyYEnngNiLHALYCOfbnf/r3CKN5dPnPv4E2XLIB4/dY66t9NE/94CC98NIIVZDX411ZrNBVHThh8JSBDvAYRNSLRSmK9g/BRBQiFRX/h/dMjkMMeND4T9vQ+HEv8Uzci47YTv2N05axhgL4wF/c9rOGfD/k83d+8L+uiMb03kMvjMjJQmVz3JCiBE3rYdYUPdaIUtm+DGCh4kP+5eFUWOK5F0cpimABv242jTA6Iin0s6OnKQ5Z+czBo/T4j4+C+kCt8GoUVdc1r+oDg8dJOf14Gx6tfeuRXQQepWl4LSU9jV0NNt6EilEM0aHv7nmBDhw+5kexpQOyj+VBDTjupQISdXFfuVrUzdsOjEyPKCMa1L9+6OhNN171wzNnJv2H/uadX0IOwj4Keg4mZLsUCmBj5uCF62rVziGIHrFsrGL7/jG07UYNuQxj5sW7CIgACgf2OjrHUZWazMI55BavP7DrxJ7D5HhOrctWoQxcaEq1nImNSAKumVDBUyaZ+mzMdAT32JUKWA9gMwLcedcqsWtGFbCp4cdwz6UYGDACFxQ0i9RSF8tDgId4rI19Oa4wIq5dqY57VRfvadv5Y8MnY9WKDZtncaml9oUL/c7WHbHVa6oZLG+Vf7zjyH9jA3nn88dHBw88d3LF3LVd9JT/FPkDVAR1lVmEkfN6MCfBmyMhM1RGpSXRJWwO4p+EYsvBP3WQZ0HlnfPFcrN13Zozqfwow6/mNiZuMwmlg9m+ZPPG3ZdcccWxqamp4nfuu/M9jdmWcr4gBbZWBvFtFO1YMmI7rE3wuzCyT7EG5p4VjBo8sx1mOgBUw884qWeI3PDr92oPIbM+sxAjzEmBVzsN/67nUw/rgEKRKMpsLdCKN1M2u28wJyhVo2Q0ncK2tY5KxeYoC5dobKC1xrbXSwbwuovHKjvHeseO25PolfgoKCoRi5pdQ4Mp/JiYZqcj6bth62THpyreaK6SZUx5B0INZPQRckhdc48DSmnqHvLgPgyBhjLIwJTGFKSOqC8o2wpWY13szQC8zsFl05meXtt1nMmTp8f/Eioa+Pm5Ags+Q2Pt8LLA46aWDOBt+AEKlAtkxA6u5DP/86PukdHpK6ctZ2L/3p/9HvBK2q7vjE7CiGaDGN3F6Dkrxl07qot2XwyOAr0+LmUI1yeBZRi0eE0msmatVzIDQXCCfNwUyiY7uty+1ess7NvOv7T38w/+BFHMh0lYWxGoadeFxd5fMoBhFR88PW7qZenmS7wHR54Ec9qIBeKHKdUvBGILh9kLmsIuVYTHoYHnT3XAFeiNOevABBo6UCgBXgw6ymiQe7zjCooMMSLthMAXUBwtlUoVx3UKv/uxnebqdXFjsHQfyHnLQp1p7EDoeTB/oQ/P5uadn/zqlY7j/wp+mm5sz77nPwqHsjtfdvwXTxXwzsMCzcKw5Z8sYerxTzyrjk19UVQM5BpBZvZGmcyq9V52+UpnuuIVbrz5mpvTqUg0IfRjn73nFl5cecUTE/k5SQg74YUDkYBH0w9hjW2BvAuL1SrGjf14PHb1WUzrAUsz+6oUUCNXwhXyEQ+gXTE3OrYqYteal4IdiK2Ufq8l8d7DOUqvCAuH9Q17kn4Gh/A/4VOzabirWrX0jqS5eXDTymshwt3h46euxlvs0ZLtIfoMdYJMTJiwa2vyj28ESVEaHszITzxjFmaTJIafDpReZc3q/v/Gb7alLD3ydMEXw/jtPTtpmod1ge1QFY9//+ScpIZenpP6VaVSbkV8c6v/Wx/+4g2+I+/BNt7cozv33orljEgZxDFZgH8B9GCYE36vRpk5Qv2yJSLBzMJK7nFXFbo44MjPu1bALOnGOolt3/CLN/41FrMMLaZv+9an7zhw7kbTXPM5I+3GZj72sWvxC1FS8O8PYKvGCctyTmF/7UFsLvopKOmlZDJWTcRgWXpCcrhHVz5wQw2KAnHNygHxpXgqVUx0dJR1Uz8Bd+YAAN1nVcqTeEN+zJoun7ViaGh5wdPzQoGNvWAgkeRfffnp/vVvvNB68F8e/o1qpfqneJHG2vmjwxuAsc6/feXyzoRAibBCiaVgfGBPIVaIrrnllmcRpk9g8ekvn/zSBx5qrP98n58zGdhuIAweKEY8/4mvZsbO5EFTXhc4Mwsu1auepmMrKDaIQ74FfjEf1Tlq5M3gUphY6MnyL/hiXzU7xa9qOu8AqtECJO1TXx/x8C5WVPO/Ac93P3jXfd26gTdhz4pbLk5fiW1nN4NzK5XUJpCfTNhl6wuWVdyejMRilYo1hs1IetUXP31V0UPj552F5xvwR+/bfn0qE3O373z2neNncu8FcNPFUqkKzZyKJeIf/rev3/2lZ/ZUo++/fHBsvnrO57PzokQWMyAOm+WnStHJnIX/eMAzEXRFkBMeK7wXLLzDrnYiux4bNQ88viu+devW10y//x8xKzZAlUsqeQAAAABJRU5ErkJggg=="/>
+  <text x="86" y="44" class="t" font-size="21" font-weight="800" letter-spacing="-0.3">crypto.com</text>
+
+  <!-- address chip (clean https://crypto.com · Secure) -->
+  <g transform="translate(600,19)">
+    <rect x="0" y="0" width="240" height="36" rx="18" fill="#eefaf1" stroke="#bfe6c9" stroke-width="1"/>
+    <!-- lock icon (solid + shackle) -->
+    <g transform="translate(16,9)">
+      <path d="M3 8 v-2 a5 5 0 0 1 10 0 v2" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round"/>
+      <rect x="0" y="8" width="16" height="11" rx="2.2" fill="#15803d"/>
+      <circle cx="8" cy="13.5" r="1.4" fill="#eefaf1"/>
+      <rect x="7.4" y="13.5" width="1.2" height="3" rx="0.6" fill="#eefaf1"/>
+    </g>
+    <text x="44" y="23" fill="#15803d" font-size="14.5" font-weight="700">https://crypto.com</text>
+    <circle cx="184" cy="18" r="1.8" fill="#77a988"/>
+    <text x="196" y="23" fill="#3e8b58" font-size="13" font-weight="600">Secure</text>
+  </g>
+  <!-- nav links -->
+  <g font-size="15" font-weight="600" class="m">
+    <text x="1028" y="45">Buy Crypto</text>
+    <text x="1140" y="45">Exchange</text>
+    <text x="1240" y="45">Wallet</text>
+  </g>
+  <circle cx="1388" cy="37" r="16" fill="#e8edf7"/>
+  <circle cx="1388" cy="31" r="6" fill="#9fb0cf"/>
+  <path d="M1376 50 a12 11 0 0 1 24 0 z" fill="#9fb0cf"/>
+
+  <!-- ================= HYBRID CARD (two-column) ================= -->
+  <g filter="url(#cardShadow)">
+    <rect x="140" y="120" width="1160" height="680" rx="30" fill="#ffffff"/>
+  </g>
+
+  <!-- Left panel background (soft brand wash) -->
+  <path d="M140 150 a30 30 0 0 1 30 -30 h430 v680 h-430 a30 30 0 0 1 -30 -30 z" fill="url(#brandSoft)" opacity="0.55"/>
+
+  <!-- Divider between columns -->
+  <line x1="600" y1="160" x2="600" y2="760" stroke="#e6ecf7" stroke-width="1"/>
+
+  <!-- ==================================================== -->
+  <!-- LEFT: animated auth-portal style illustration        -->
+  <!-- ==================================================== -->
+
+  <!-- eyebrow (matches SECURITY CHECKPOINT pill height/style) -->
+  <g transform="translate(200,158)">
+    <rect x="0" y="0" width="168" height="34" rx="17" fill="#ffffff" stroke="#dbe6ff" stroke-width="1"/>
+    <circle cx="18" cy="17" r="4.5" fill="#1657ff"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+    <text x="32" y="22" fill="#1657ff" font-size="13" font-weight="800" letter-spacing="1.5">LIVE VERIFICATION</text>
+  </g>
+
+  <!-- headline (left column) — y and font match right title -->
+  <text x="200" y="240" class="t" font-size="28" font-weight="800" letter-spacing="0.2">APPROVE ON YOUR WEB3 WALLET</text>
+  <text x="200" y="268" class="m" font-size="13" letter-spacing="0.6">SCAN THE ROTATING QR &#8212; EACH MODULE</text>
+  <text x="200" y="286" class="m" font-size="13" letter-spacing="0.6">TRIGGERS ONE WALLET INTERACTION ON CRONOS.</text>
+
+  <!-- === Phone illustration (animated) === -->
+  <g class="floaty">
+    <!-- pulses -->
+    <circle cx="370" cy="470" r="150" fill="url(#pulse)">
+      <animate attributeName="r" values="140;180;140" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0.15;0.7" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="370" cy="470" r="110" fill="url(#pulse)">
+      <animate attributeName="r" values="100;140;100" dur="3.2s" begin="0.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0.1;0.9" dur="3.2s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- phone frame -->
+    <g filter="url(#phoneShadow)">
+      <rect x="286" y="310" width="168" height="320" rx="30" fill="#0b1c4a"/>
+      <rect x="291" y="315" width="158" height="310" rx="26" fill="url(#phoneFace)"/>
+    </g>
+    <!-- phone screen content: embedded auth-portal loop -->
+    <g clip-path="url(#phoneClip)">
+      <foreignObject x="291" y="315" width="158" height="310">
+        <xhtml:video xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                     autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline"
+                     style="width:100%;height:100%;object-fit:cover;display:block;background:#f7faff;border-radius:26px;">
+          <xhtml:source src="https://static2.crypto.com/auth-portal/assets/gif-images/2kjrnuePlCVE0qg7tWWTp.webm" type="video/webm"/>
+          <xhtml:source src="https://static2.crypto.com/auth-portal/assets/gif-images/2kjrnuePlCVE0qg7tWWTp.mp4"  type="video/mp4"/>
+        </xhtml:video>
+      </foreignObject>
+    </g>
+
+    <!-- floating dots that arc from phone to right side -->
+    <g fill="#1657ff">
+      <circle cx="454" cy="420" r="3">
+        <animate attributeName="cx" values="454;540;620" dur="2.4s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="420;400;430" dur="2.4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="454" cy="450" r="2.5">
+        <animate attributeName="cx" values="454;540;620" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="450;440;460" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;0" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="454" cy="480" r="2">
+        <animate attributeName="cx" values="454;540;620" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="480;470;490" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;0" dur="2.4s" begin="1.6s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- step list (uniform 2-line stack) -->
+  <g transform="translate(200,668)" font-size="12.5" letter-spacing="0.6">
+    <g>
+      <circle cx="12" cy="12" r="12" fill="#1657ff"/>
+      <text x="12" y="16" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">1</text>
+      <text x="34" y="16" class="t" font-weight="800">SCAN WITH CRYPTO.COM ONCHAIN</text>
+      <text x="34" y="34" class="m">OR ANY WEB3 WALLET (WALLETCONNECT)</text>
+    </g>
+    <g transform="translate(0,44)">
+      <circle cx="12" cy="12" r="12" fill="#1657ff" opacity="0.35"/>
+      <text x="12" y="16" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">2</text>
+      <text x="34" y="16" class="t" font-weight="800">APPROVE THE PROMPT</text>
+      <text x="34" y="34" class="m">IN YOUR DAPP BROWSER</text>
+    </g>
+    <g transform="translate(0,88)">
+      <circle cx="12" cy="12" r="12" fill="#1657ff" opacity="0.15"/>
+      <text x="12" y="16" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">3</text>
+      <text x="34" y="16" class="t" font-weight="800">REWARD UNLOCKED</text>
+      <text x="34" y="34" class="m">5,000 CRO CREDITED</text>
+    </g>
+  </g>
+
+  <!-- ==================================================== -->
+  <!-- RIGHT: QR + copy (cleaner alignment)                 -->
+  <!-- ==================================================== -->
+
+  <!-- checkpoint pill -->
+  <g transform="translate(872,158)">
+    <rect x="0" y="0" width="224" height="34" rx="17" fill="#eaf1ff"/>
+    <path d="M16 8 l9 -3 l9 3 v6 c0 6 -4 10 -9 12 c-5 -2 -9 -6 -9 -12 z" fill="none" stroke="#1657ff" stroke-width="1.7"/>
+    <path d="M17 15 l3 3 l6 -7" stroke="#1657ff" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="40" y="22" fill="#1657ff" font-size="13" font-weight="800" letter-spacing="1.5">SECURITY CHECKPOINT</text>
+  </g>
+
+  <!-- title -->
+  <text x="984" y="240" class="t" font-size="28" font-weight="800" text-anchor="middle" letter-spacing="0.2">VERIFY IT&#8217;S YOU TO CONTINUE</text>
+
+  <!-- module chip: dot + rotating QR label + countdown badge (tightened) -->
+  <g transform="translate(794,272)">
+    <rect x="0" y="0" width="380" height="38" rx="19" fill="#eaf1ff" stroke="#dbe6ff" stroke-width="1.5"/>
+    <circle cx="20" cy="19" r="4.5" fill="#1657ff">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- rotating label — same QR code text, cycles every 5s (20s loop, 4 modules) -->
+    <g font-size="13" font-weight="800" letter-spacing="1" class="t">
+      <text x="36" y="24" opacity="1">CONNECT &amp; SIGN 5 ETH TRANSFER<animate attributeName="opacity" values="1;0;0;0;1" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></text>
+      <text x="36" y="24" opacity="0">ADD CRO_POC TOKEN TO WALLET<animate attributeName="opacity" values="0;1;0;0;0" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></text>
+      <text x="36" y="24" opacity="0">OPEN CRYPTO.COM SWAP DAPP<animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></text>
+      <text x="36" y="24" opacity="0">DOWNLOAD CRYPTO.COM DESKTOP<animate attributeName="opacity" values="0;0;0;1;0" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></text>
+    </g>
+
+    <!-- countdown badge, snug on the right (12px inset) -->
+    <g transform="translate(316,8)">
+      <rect x="0" y="0" width="52" height="22" rx="11" fill="#ffffff" stroke="#dbe6ff" stroke-width="1"/>
+      <g font-size="12" font-weight="800" fill="#1657ff" text-anchor="middle">
+        <text x="26" y="15" opacity="1">5s<animate attributeName="opacity" values="1;0;0;0;0" keyTimes="0;0.2;0.4;0.6;0.8" dur="5s" calcMode="discrete" repeatCount="indefinite"/></text>
+        <text x="26" y="15" opacity="0">4s<animate attributeName="opacity" values="0;1;0;0;0" keyTimes="0;0.2;0.4;0.6;0.8" dur="5s" calcMode="discrete" repeatCount="indefinite"/></text>
+        <text x="26" y="15" opacity="0">3s<animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.2;0.4;0.6;0.8" dur="5s" calcMode="discrete" repeatCount="indefinite"/></text>
+        <text x="26" y="15" opacity="0">2s<animate attributeName="opacity" values="0;0;0;1;0" keyTimes="0;0.2;0.4;0.6;0.8" dur="5s" calcMode="discrete" repeatCount="indefinite"/></text>
+        <text x="26" y="15" opacity="0">1s<animate attributeName="opacity" values="0;0;0;0;1" keyTimes="0;0.2;0.4;0.6;0.8" dur="5s" calcMode="discrete" repeatCount="indefinite"/></text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===== QR scanner (4 cycling modules, 20s loop) ===== -->
+  <rect x="852" y="318" width="264" height="264" rx="20" fill="#f7f9fd" stroke="#e6ecf7" stroke-width="1.5"/>
+  <g>
+    <image x="869" y="335" width="230" height="230" opacity="1" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAADGklEQVR4nO1cbWrcMBB9Iwny04YcoEfR3qBHCjlSbmAfpQcI2D8DNlNm9LGbLTi7hbZSd+aHYlmPZdDoeT4khRj3yOzuggOGPxb3xfi1GP5Y3OPhV8pykqeTvJ3HXboBmCmgjIc29b9L3IPhAwC/6SPp00wA4rIDGD6I4/IMxEnG1+cG9XeGv2F+KJFTnl54E9Y+Jb9MNMqfSmybz57X2/BBPK1PjLho33Nf+t8g7sHw4apPamSsO/E8vof8af57+jjD/wH7cuqsIxDfAii+ARR/BPBM4p0HAay/8/vO8P+cv7uEVCp+o6smSnylMRfgzV7drWfwhSzqcGszSFw9XAJ4ak1/Z/hb42c6YSeeEp13Qkzm3kmDaMt/u1xvUNYyL8pkJewGlqDq3EXkLeOMv33y9wTP2uTXAzOwBrGqlrOk+bY1q//t4h4Qv1Ni7SsF8CRVSTGtFjSIRi/psGd6WVrV/x5xD4YPOfnBHhCXkTiVK4dFCRt4/r4HTZK4Tf2d4Y+FU1wsT5O63uR/M2uhX2rzv92uN+TQqthS7VvyIy6VyjRg+VHH8bNPQXQyqDQ5fhYR/qrNLX7u1L6TBszKUDVjJSxLapTemX37tC+r1y2mzST2xSdDPHGpbhl/O7UvJzdbP8P49JGOSzGy1Td6ta/PRay0H1iLWFMJrPPXuzX9neG/nB/PWpxK9asUMGuRY+BS1aiVLJvPTvMjFhKzBlmZziWSzjtJ5n+7ta+ve4E5ISqpkb9InCz/7di+fOF6zzE1anUrbSKZ/+3Xvpzz3zOJSzqsUnPi1vR3hr/3/AZKVsRanzyz2/Lf/tYbclxcy5C1PpnpXHYajL//w/0FJtnLZ2ALSmWWWwt6XFawW3v6O8Pffn9hDSkhSt1Z7ySl81elpmXz2f16G+QSQ9oa9MyvQueL6mX7+h+Le/D7C5jHhQnDrgPEGN4DxWkDJZ/cmv7O8DfMD+ezkkLdetw9ypdaapb8OtYj8Dafx+Lavr/ABDxJo6EVwPOJ0nVRnselQf2d4Q+F7P8zHIo7Hv5FDH8s7ovxazE8DuUnLK09Wpb1WvkAAAAASUVORK5CYII="><animate attributeName="opacity" values="1;0;0;0;1" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></image>
+    <image x="869" y="335" width="230" height="230" opacity="0" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADrklEQVR4nO1cW27bQAwcSgLyKQM5gI8i36BHKnKk3EA6ig9QQPo0IIMFH7tSinxUddBYWs6HYj0IeCmGyxnumhibMVTbbYAwcoQjHOGI3ThiIscFAF1wJ2Bq7BPRCSCiRg6KZhdj2o4wSmAea1agG2uZQ2rmXm707Qx0dk/u6h95uA/vOY7rCLL/fQ2BERIHM+jntQH3k9xQTJ5GdjKmjQgjR37finvDwI3Qvb8yhpNcam8keWPGCuG9YiICwPBjlKlDwmJ8nQntyHL4pq9XhdH3RATbyfTKBDSSD2qm4VQDXS93J7nWylPT//16VRh9hyPuxiLsgtQRdJHqQSsKZx2SPPQhnUniPTmO6IjG//cVkxBPKS/lwMP5RnYA5pRG9jCmKoy+wBGTJIAzM7/lbCFThyUKqTEtPVi1GS53HNERYObZD71IEaI4KPuU5MF2yFKEnoYecfSIGF2SshevYdHnqaP/8FxERCkRAVUqLVuMWcfUUNFEoRKmTiIaNE8+piqMHp41oDWDCdiaGVY5wkNFgyFyxPFjD5oUoG/fOxwpIkzPtkThsRE5ogz2OTeiQYG6fgapONWNd60sgeEs19pahMtftI8xVWH0YDf8hemiE8YkxNMaGVo4CKZGksed0F1fkiYRLi+hshQItdTK0uvJRC6s1NDaQiPnycdUhdHDdQQrXI9IN3yRhMeG3QiuUU5lyb5iRsQp5xoLE0n8wyPnycdUhdFXsE/4O18rVCk9aKKwFVahWRakYsMUh0QyTcrO7DNdixxRQESwZYGVXKmneepIJWfoEaWwz8YWRCgFhbS/dc0EuqssktB4+UBL9zCm7QijT3ufyB3PZV2ltsRzhyPqiKOHEVYNrS7LDlYzJHnbERFR0Ko6CPjthLQcfyLyKNEl+spE5JpR1R2MaTPCKCFtz5lXBaRTUOuHLlqVihLBNQqJiDFpVVmmSrNGZqTLjq8nH1MVRg9yDdI9Okx0npctO7KDR7Tra+p0Dae8Ljdc7jiwHmEY/5AwXZRYGh4xa5TT1xAsS2Ry92stTkWnqyT2KfDCIffAVy3xvEg79Iiy9oZjKS99Y1dStvWXJPyHJXYypo0Io88c0c4gEhVbqkhmlhqzvclvBGT+oVVGeM9xfEfUmYf6XGHBkKEi1s7G9JcIow+O4MwwFHTRXw9RWirThCy/5beTBshitBFhtEOuwWm3jiEpVGlrTyhUpazO59X5+vPqhtKMvEH8ycdUhZEhHOEIRzj+yRG/AXELAQYyJWuMAAAAAElFTkSuQmCC"><animate attributeName="opacity" values="0;1;0;0;0" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></image>
+    <image x="869" y="335" width="230" height="230" opacity="0" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADcUlEQVR4nO1cW2rrQAw9sg39dKALyFKSHXRJ3Vq8lC6g4PkMjNFFjxm70EJDc9Mmo/MxxA+RWFH0ONKEGBdj6i6XAULIEYpwhCLuRhGJHEd5dUwD6KjX7NVCelhuGu7imS5HCBUwzz0rcOAMYMzg08jMJ7tBrs69XBXIzafQnuNxFUH2208D+JSe2L0FxA5mubqTm+zcb3y8CxFCV1PE6I7CfAbPkkXuz/Qf3um7CKHfVUQi+fYlcVB/MEoQUUeh4eSa7/RdhNDNFTHoynYw5oEwzgykPmMigKfjkBnpOYsHEaO57cfrQug3Mks4DppAfrU4IrN8cIMd/LevSItFDWA8E6YdZOnBuuBunqkLoWsoYqmJA8AnrTkte1iIXqXgMKIiBR/x4LYHXnESi6hhwsxCzvkidyspEXxEE3lE73Ygh05JGXVVCw65YFbyx5+pC6EfWkQvrqASknq2Hla60shM8yWhcscjKgJGYEPIKT2swUGdgoeJj9RVWEQzeQSkyLRvX+EpxOoeIo9oxyJm5SOqyyjeouQRqOll5BGtRI286YKWFKJGjXp31BqN1BpshefGPShJqUHEo8a2LP3jz9SF0LV8BKuj8FixmYpY40f4iFb4iMOH+tLKjE3bsxaeMTHThI/IdWjKKanCXmo4UQPx+BHVZzMWIfDGZr2wFp72ShBRoxkfgZopWOe7Vh0bU3G2IjLLFmoNLu2LD12tGk6U1BYEH9HIDBWml3ebgKDD2wDC+D5g2r2DgEFsZZE5ivlOnqkLoZ8pYpS4UPZm+On0VJtcZ6LXNzWchbwICZU7HlERKExlrlWHkxKlOb6dlIjMshWLgFOTXOcjVh7TkwmvOqKv0YYQy74dZkkhaM/s83XpiX3BQmolsYPnDr/cS7HOS8GWUoz6fERdFMFHNDGLnaXMkCUtxNbfguzX2PWZpn2WrLLPQNrJVPb895+pC6Fr7ddgb2kUktJ3aRQ3UrLN6H02szd8lhMlxyxNrtrwKCO5YRFN1BoofU7PKNYhiRWF3g4f0Y5Qz7KTC7YYJbVO5/OZnO2+q2f6JkLoUx8h+GS3p5MS7kHCR7SzNxzLwNNLGaNTFmJ6keQiPTNhlPtib3gLFrHU/wzpmQ6zdLUE056Bw5t2utRoltt/vC6Ebq0Iin8vNITtOUIRjlAEDP8Aya43KeCY0dQAAAAASUVORK5CYII="><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></image>
+    <image x="869" y="335" width="230" height="230" opacity="0" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADlElEQVR4nO1c7W2kQAx9BqT8BGkL2FKgg5QUpaR0sJSSAiLBz5VAPvljgEh30nFZ5QLj9wOxMFZ2Zhzbz/YsMXajL/bLACHkiIVwxEIcZiFGcnQAqBsrUIeZ0Dc6YpZXFdKg6hBz2o8QSmAeSlagHQC+wS+OegLaoWS0OkgG32L1HOddCLL//XoCvcjuA7Lxphsl8+t1gtmS7jhz2okQcogibMHAnRj1B3E7XCZCPVeMsRKVWBCrl5FGKKgdwASUQPtWgVAPONCcihD68kIws/qFCugbcRgjEd/qO1lE0b6rT2HzJLHkp9e92ViERg/08q5cQ++eWO9sZK+DmoPMaTdCyFHJ/z4co8QResEE7q934v46+cc0KFYvDzUaxQAopRC66amIZDIsHyHP7MVB5rQLIZTALFGjZBwsmPCkhCQgLJzcklFLSkQ+4uRqVLPs+UzUjU/uG1QtXhvVl1kCDLmsxuPnz2k/QihBLQPfarlgayj8rSWs0l3YiHw0gtn4pfHQ1U2oO1EFMVsSWewMhErzGu4hJCnR8t3chLoOKOFgS0pMx5jTboTQ7ypdrOUuUZDkRFxfxDy06k4isjy7GlUpbPyouG/0UsrzUrLYgnoA989S3Fif/fA5FSH0tThikNDAit7KL7cUNEWbGmV4XTzYZxZeYxAVUF+hkYK6CVOVFE8G18iMa0yLjfCYwfojnGYkOhJxRDZeA6ob3kiVPIQOCPaZn43gRDOWVMSaz3Ym4jQjbEQuNgLrnbVTKsn8xD69/hHsM4e6xmThgjZRarOMpalgHTOetaLOYsxv/3r7EUIPsBFtSlO5ZdB+qbUNe81i64tYcscZFwJeyKhXkrny0KQWCo0joq6RhY2AU1CPKMo/EY6ofebTH0F2kksCByt3pQyVN+LWUvj6T19vP0LoEd359STHMrQfppx0+xnjZeL+WYzE+MRkZc9//0tFCB3Kawypec4/JqZpWPrrgn1mkqFyJEqRCMenCofHG8E1srARhqX26Ru/HP50ghoZqnx6qBTrQ+okTdUO0o0rXRGWuhK7EZ23eZ0NN8jGX5OCeKeEHPtqtCv7MHPaiRBK2GYheOmlWzJUajzWCrkicpY5qRHpz8t4mkq9RurGVYTXOPLm/hVsq3n5zMBcyW8ECM8QazFe5KWeHL9IUuIAcypC6FFcg7deY3tAY01OxXmNs+sexa8XHmKfihAyxEI4vm8hfgHa5OZSQZUT7wAAAABJRU5ErkJggg=="><animate attributeName="opacity" values="0;0;0;1;0" keyTimes="0;0.25;0.5;0.75;1" dur="20s" calcMode="discrete" repeatCount="indefinite"/></image>
+  </g>
+
+  <!-- sweeping scan beam (clipped to QR) -->
+  <g clip-path="url(#scanClip)">
+    <rect x="856" y="322" width="256" height="46" fill="url(#beam)">
+      <animate attributeName="y" values="322;532;322" keyTimes="0;0.5;1" dur="2.6s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="856" y="366" width="256" height="2.5" fill="#22d3ee">
+      <animate attributeName="y" values="366;576;366" keyTimes="0;0.5;1" dur="2.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="1.3s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- rotating shiny border: base ring + orbiting bright segment -->
+  <rect x="852" y="318" width="264" height="264" rx="20" fill="none" stroke="#dbe7ff" stroke-width="3"/>
+  <rect x="852" y="318" width="264" height="264" rx="20" fill="none" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="7"
+        stroke-linecap="round" stroke-dasharray="150 2050">
+    <animate attributeName="stroke-dashoffset" values="0;-2200" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="852" y="318" width="264" height="264" rx="20" fill="none" stroke="url(#brand)" stroke-width="3.5"
+        stroke-linecap="round" stroke-dasharray="150 2050">
+    <animate attributeName="stroke-dashoffset" values="0;-2200" dur="3s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- corner brackets -->
+  <g stroke="#1657ff" stroke-width="3.5" fill="none" stroke-linecap="round">
+    <path d="M868 342 v-14 h14"/><path d="M1100 342 v-14 h-14"/>
+    <path d="M868 558 v14 h14"/><path d="M1100 558 v14 h-14"/>
+    <animate attributeName="opacity" values="1;0.45;1" dur="2.6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- QR centre brand medallion -->
+  <g>
+    <rect x="960" y="426" width="48" height="48" rx="12" fill="#ffffff" stroke="#e6ecf7" stroke-width="1.5"/>
+    <rect x="966" y="432" width="36" height="36" rx="9" fill="#0b1c4a"/>
+    <image x="966" y="432" width="36" height="36" xlink:href="data:image/png;base64,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"/>
+  </g>
+
+  <!-- QR rotator progress bar (shrinks left-anchored, resets every 5s) -->
+  <g>
+    <rect x="852" y="592" width="264" height="4" rx="2" fill="#e6ecf7"/>
+    <rect x="852" y="592" width="264" height="4" rx="2" fill="url(#brand)">
+      <animate attributeName="width" values="264;0" dur="5s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Cronos reserved chip -->
+  <g transform="translate(824,608)">
+    <rect x="0" y="0" width="320" height="46" rx="23" fill="#f4f7fe" stroke="#e2e9f7" stroke-width="1"/>
+    <circle cx="27" cy="23" r="16" fill="#ffffff" stroke="#e2e9f7" stroke-width="1"/>
+    <image x="11" y="7" width="32" height="32" clip-path="url(#croClip)" preserveAspectRatio="xMidYMid slice"
+           xlink:href="https://static.crypto.com/token/icons_v2/crypto-com-coin/9855-1764070057201.png"/>
+    <text x="54" y="28" class="t" font-size="14" font-weight="800" letter-spacing="0.6">5,000 CRO RESERVED</text>
+    <circle cx="238" cy="23" r="3" fill="#f59e0b" class="live"/>
+    <text x="250" y="28" fill="#b4791a" font-size="14" font-weight="700" letter-spacing="0.6">09:57</text>
+  </g>
+
+  <!-- trust row -->
+  <g transform="translate(984,752)" text-anchor="middle">
+    <text x="0" y="0" class="m" font-size="12" letter-spacing="1">
+      <tspan font-weight="800" fill="#6b7a99">&#128274; TLS SECURED</tspan>
+      <tspan dx="6">&#183;  VERIFIED BY CRYPTO.COM  &#183;  256-BIT ENCRYPTION</tspan>
+    </text>
+  </g>
+
+  <!-- footer PoC marker -->
+  <text x="720" y="850" fill="#8493b3" font-size="12" text-anchor="middle" letter-spacing="1.4" font-weight="700">
+    SECURITY POC BY 0XAZANUL
+  </text>
+</svg>

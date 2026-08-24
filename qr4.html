@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PoC 4 · Fake Download QR</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; font:15px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+           background:linear-gradient(180deg,#eef3fb,#e4eaf6); min-height:100vh; color:#0b1533; }
+    .wrap { max-width:520px; margin:0 auto; padding:32px 20px 80px; }
+    .card { background:#fff; border-radius:20px; padding:26px; box-shadow:0 20px 40px rgba(38,54,95,.14); }
+    h1 { font-size:22px; margin:0 0 8px; }
+    p.sub { color:#6b7a99; margin:0 0 20px; }
+    .qrbox { display:flex; justify-content:center; padding:16px; background:#f7f9fd;
+             border:1px solid #e6ecf7; border-radius:14px; margin:18px 0; }
+    .qrbox img { width:240px; height:240px; display:block; }
+    .qrurl { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:#6b7a99;
+             word-break:break-all; text-align:center; margin:6px 0 14px; }
+    .fields { background:#f9fbff; border:1px solid #e6ecf7; border-radius:12px; padding:14px; margin:16px 0; }
+    .fields .row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed #e6ecf7; font-size:13px; gap:12px; }
+    .fields .row:last-child { border-bottom:none; }
+    .fields b { color:#0b1533; font-weight:500; }
+    .fields code { font-family:ui-monospace,Menlo,monospace; color:#1657ff; text-align:right; word-break:break-all; }
+    a.btn { display:block; text-align:center; padding:14px; margin-top:10px; font-size:16px; font-weight:700;
+            color:#fff; background:linear-gradient(180deg,#2f7bff,#1657ff); border-radius:12px; text-decoration:none; }
+    .note { margin-top:14px; font-size:12px; color:#6b7a99; line-height:1.55; }
+    .note b { color:#0b1533; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>PoC 4 &middot; Fake Download QR</h1>
+      <p class="sub">The QR encodes a URL to a themed download page. On scan, the victim&rsquo;s browser loads the page and auto-triggers a download of <b>Crypto.com-Desktop-Setup.exe</b> (a harmless placeholder here).</p>
+
+      <div class="qrbox"><img id="qr" alt="download QR"/></div>
+      <div class="qrurl" id="qrurl"></div>
+
+      <div class="fields">
+        <div class="row"><b>Landing page</b><code id="target"></code></div>
+        <div class="row"><b>File</b>       <code>Crypto.com-Desktop-Setup.exe</code></div>
+        <div class="row"><b>Payload</b>    <code>malware.exe (placeholder)</code></div>
+        <div class="row"><b>Trigger</b>    <code>auto-download on page load</code></div>
+      </div>
+
+      <a class="btn" id="deep">Open landing page</a>
+
+      <p class="note">
+        <b>How it works.</b> The QR points to <code>download.html</code> which fetches <code>malware.exe</code> as a Blob and forces a save via <code>&lt;a download&gt;</code>. The browser saves it under the <b>attacker-chosen filename</b> regardless of the served MIME type or path, so <code>malware.exe</code> can be renamed to any plausible installer name in one edit.
+      </p>
+      <p class="note">
+        <b>Replace the payload.</b> Overwrite <code>malware.exe</code> in the working directory with any test artefact &mdash; e.g. the EICAR AV test string or a benign signed binary &mdash; to demonstrate real AV/EDR detection.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Hosted Netlify page delivers the fake installer download on load.
+    const target = 'https://playful-selkie-b0bde0.netlify.app/';
+    document.getElementById('target').textContent = target;
+    document.getElementById('qrurl').textContent = target;
+    document.getElementById('qr').src =
+      'https://api.qrserver.com/v1/create-qr-code/?data='+encodeURIComponent(target)+'&size=480x480&ecc=H&margin=8';
+    document.getElementById('deep').href = target;
+  </script>
+</body>
+</html>

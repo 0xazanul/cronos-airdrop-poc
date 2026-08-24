@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 400 300" width="100%">
+  <image height="30" width="30" x="10" y="10"/>
+  <rect fill="#08f" height="40" width="40" x="50" y="50"/>
+</svg>

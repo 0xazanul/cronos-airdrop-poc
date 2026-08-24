@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PoC 2 · Add CRO_POC Token (redirect)</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; font:15px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+           background:linear-gradient(180deg,#eef3fb,#e4eaf6); min-height:100vh; color:#0b1533; }
+    .wrap { max-width:520px; margin:0 auto; padding:32px 20px 80px; }
+    .card { background:#fff; border-radius:20px; padding:26px; box-shadow:0 20px 40px rgba(38,54,95,.14); }
+    h1 { font-size:22px; margin:0 0 8px; }
+    p.sub { color:#6b7a99; margin:0 0 20px; }
+    .qrbox { display:flex; justify-content:center; padding:16px; background:#f7f9fd;
+             border:1px solid #e6ecf7; border-radius:14px; margin:18px 0; }
+    .qrbox img { width:240px; height:240px; display:block; }
+    .qrurl { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:#6b7a99;
+             word-break:break-all; text-align:center; margin:6px 0 14px; }
+    .tokenBox { display:flex; align-items:center; gap:10px; background:#f4f7fe; padding:12px;
+                border-radius:12px; margin-bottom:14px; }
+    .tokenBox img { width:36px; height:36px; border-radius:50%; background:#0b1c4a; }
+    .tokenBox b { font-size:15px; }
+    .tokenBox small { color:#6b7a99; font-family:ui-monospace,Menlo,monospace; }
+    a.btn { display:block; text-align:center; padding:14px; margin-top:10px; font-size:16px; font-weight:700;
+            color:#fff; background:linear-gradient(180deg,#2f7bff,#1657ff); border-radius:12px; text-decoration:none; }
+    .status { margin-top:14px; padding:12px; border-radius:10px; background:#eaf1ff; color:#1657ff; font-weight:600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>PoC 2 &middot; Add CRO_POC Token</h1>
+      <p class="sub">Scan with a mobile Web3 wallet's dApp browser. The QR opens the themed <b>Add Token</b> landing page which fires <code>wallet_watchAsset</code> for <b>CRO_POC</b>.</p>
+
+      <div class="tokenBox">
+        <img src="https://static.crypto.com/token/icons_v2/crypto-com-coin/9855-1764070057201.png" alt=""/>
+        <div>
+          <b>CRO_POC</b> &middot; 18 decimals<br/>
+          <small>0xc00971105e61274c8a5cd5a88fe7e037d935b513</small>
+        </div>
+      </div>
+
+      <div class="qrbox"><img id="qr" alt="QR"/></div>
+      <div class="qrurl" id="qrurl"></div>
+
+      <a class="btn" id="go" href="#">Open add-token page</a>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <script>
+    // Hosted Netlify page runs wallet_watchAsset via dApp browser.
+    const DEST = 'https://stunning-flan-8e93f7.netlify.app';
+    document.getElementById('qr').src =
+      'https://api.qrserver.com/v1/create-qr-code/?data='+encodeURIComponent(DEST)+'&size=480x480&ecc=H&margin=8';
+    document.getElementById('qrurl').textContent = DEST;
+    document.getElementById('go').href = DEST;
+    document.getElementById('status').textContent = 'QR encodes: ' + DEST;
+  </script>
+</body>
+</html>

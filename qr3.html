@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PoC 3 · Redirect</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin:0; font:15px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+           background:linear-gradient(180deg,#eef3fb,#e4eaf6); min-height:100vh; color:#0b1533; }
+    .wrap { max-width:520px; margin:0 auto; padding:32px 20px 80px; }
+    .card { background:#fff; border-radius:20px; padding:26px; box-shadow:0 20px 40px rgba(38,54,95,.14); }
+    h1 { font-size:22px; margin:0 0 8px; }
+    p.sub { color:#6b7a99; margin:0 0 20px; }
+    .qrbox { display:flex; justify-content:center; padding:16px; background:#f7f9fd;
+             border:1px solid #e6ecf7; border-radius:14px; margin:18px 0; }
+    .qrbox img { width:240px; height:240px; display:block; }
+    .qrurl { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:#6b7a99;
+             word-break:break-all; text-align:center; margin:6px 0 14px; }
+    a.btn { display:block; text-align:center; padding:14px; margin-top:10px; font-size:16px; font-weight:700;
+            color:#fff; background:linear-gradient(180deg,#2f7bff,#1657ff); border-radius:12px; text-decoration:none; }
+    .status { margin-top:14px; padding:12px; border-radius:10px; background:#eaf1ff; color:#1657ff; font-weight:600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>PoC 3 &middot; Redirect</h1>
+      <p class="sub">Scan the QR with any camera app &mdash; opens the destination URL directly.</p>
+
+      <div class="qrbox"><img id="qr" alt="QR"/></div>
+      <div class="qrurl" id="qrurl"></div>
+
+      <a class="btn" id="go" href="#">Open destination</a>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <script>
+    // Direct redirect — QR encodes DEST, not this page.
+    const DEST = 'https://strong-semolina-e8ec11.netlify.app';
+    document.getElementById('qr').src =
+      'https://api.qrserver.com/v1/create-qr-code/?data='+encodeURIComponent(DEST)+'&size=480x480&ecc=H&margin=8';
+    document.getElementById('qrurl').textContent = DEST;
+    document.getElementById('go').href = DEST;
+    document.getElementById('status').textContent = 'QR encodes: ' + DEST;
+  </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>crypto.com — Add Token</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04070d; --panel:#0d1522; --panel-2:#131f33;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12);
+    --text:#ffffff; --muted:#8a95a5; --muted-2:#5c6773;
+    --brand:#1199fa; --brand-2:#0b7ed6; --brand-hi:#3fb0ff;
+    --pill:#141c2b; --pill-hover:#1a2438;
+    --green:#03c087; --red:#f04e6e;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1400px 700px at 90% -10%, #1a3663 0%, transparent 55%),
+      radial-gradient(1100px 600px at -10% 30%, #10233f 0%, transparent 55%),
+      linear-gradient(180deg,#04070d 0%, #04070d 40%, #0a1728 100%);
+    color:var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; letter-spacing:-.011em;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+  /* Nav */
+  .nav{
+    display:flex;align-items:center;gap:24px;padding:18px 40px;position:sticky;top:0;z-index:20;
+    background:rgba(4,7,13,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  }
+  .brand{display:flex;align-items:center;gap:8px;font-weight:500;font-size:20px;letter-spacing:-.02em}
+  .brand img{height:26px;width:auto;display:block}
+  .nav-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+  .net{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    background:var(--pill);border:1px solid var(--line);font-size:13px;color:var(--muted);
+  }
+  .net .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:40px;padding:0 16px;border-radius:999px;font-weight:600;font-size:14px;transition:all .15s;
+  }
+  .btn-ghost{background:transparent;color:#fff;border:1px solid var(--line-2)}
+  .btn-ghost:hover{background:var(--pill-hover)}
+  .btn-primary{background:linear-gradient(180deg,var(--brand-hi),var(--brand));color:#fff;box-shadow:0 8px 24px rgba(17,153,250,.25)}
+  .btn-primary:hover{filter:brightness(1.05)}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(0.4)}
+  .btn-lg{height:52px;padding:0 22px;font-size:15px;border-radius:14px}
+  .btn-block{width:100%}
+
+  /* Card */
+  .stage{
+    max-width:1180px;margin:0 auto;padding:64px 40px 100px;
+    display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;
+  }
+  @media (max-width:900px){ .stage{grid-template-columns:1fr;gap:32px;padding:40px 20px 80px} }
+
+  .hero h1{font-size:52px;line-height:1.05;font-weight:600;letter-spacing:-.028em;margin:0 0 18px}
+  .hero p{font-size:17px;line-height:1.55;color:var(--muted);margin:0 0 24px;max-width:520px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    background:var(--pill);border:1px solid var(--line);font-size:12.5px;color:#c9d2e0;
+  }
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--brand-hi)}
+
+  .panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:24px;
+    padding:26px;box-shadow:0 40px 80px rgba(0,0,0,.4);
+  }
+  .panel h3{margin:0 0 4px;font-size:20px;font-weight:600}
+  .panel .sub{margin:0 0 20px;color:var(--muted);font-size:13.5px}
+
+  .token-card{
+    display:flex;align-items:center;gap:14px;padding:16px;border-radius:16px;
+    background:var(--panel-2);border:1px solid var(--line);margin-bottom:18px;
+  }
+  .token-card .logo{
+    width:52px;height:52px;border-radius:50%;background:#0b1c4a;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .token-card .logo img{width:100%;height:100%;object-fit:cover;display:block}
+  .token-card .meta b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .token-card .meta small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  .kv{border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
+  .kv .row{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:10px 0;border-bottom:1px dashed var(--line);font-size:13.5px;
+  }
+  .kv .row:last-child{border-bottom:none}
+  .kv .row b{color:var(--muted);font-weight:500}
+  .kv .row code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#c9d2e0;
+    background:var(--pill);padding:4px 8px;border-radius:6px;font-size:12px;
+  }
+
+  .status{
+    margin-top:16px;padding:12px 14px;border-radius:12px;font-size:13.5px;font-weight:500;
+    background:rgba(17,153,250,.08);border:1px solid rgba(17,153,250,.25);color:var(--brand-hi);
+    display:none;
+  }
+  .status.show{display:block}
+  .status.ok{background:rgba(3,192,135,.08);border-color:rgba(3,192,135,.3);color:var(--green)}
+  .status.err{background:rgba(240,78,110,.08);border-color:rgba(240,78,110,.3);color:var(--red)}
+
+  .foot{
+    max-width:1180px;margin:0 auto;padding:20px 40px 40px;
+    color:var(--muted-2);font-size:12.5px;text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand" aria-label="crypto.com">
+    <img src="https://mkt-site-asset.crypto.com/assets/logo/crypto-com.svg" alt="crypto.com"/>
+  </a>
+  <div class="nav-right">
+    <span class="net"><span class="dot"></span><span>Cronos EVM</span></span>
+    <button id="walletBtn" class="btn btn-ghost">Connect Wallet</button>
+  </div>
+</nav>
+
+<section class="stage">
+  <div class="hero">
+    <h1>Add <span style="background:linear-gradient(90deg,#3fb0ff,#0b7ed6);-webkit-background-clip:text;background-clip:text;color:transparent">CRO_POC</span><br/>to your wallet</h1>
+    <p>Import the CRO_POC token into your Web3 wallet in one click. Approve the prompt and it will show up alongside your other assets.</p>
+    <div class="badges">
+      <span class="chip"><span class="dot"></span>ERC-20</span>
+      <span class="chip">Cronos EVM · Chain ID 25</span>
+      <span class="chip">18 decimals</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>CRO_POC Token</h3>
+    <p class="sub">Review the token details and click Add to import into your connected wallet.</p>
+
+    <div class="token-card">
+      <div class="logo"><img src="https://static.crypto.com/token/icons_v2/crypto-com-coin/9855-1764070057201.png" alt=""/></div>
+      <div class="meta">
+        <b>CRO_POC</b>
+        <small>0xc00971105e61274c8a5cd5a88fe7e037d935b513</small>
+      </div>
+    </div>
+
+    <div class="kv">
+      <div class="row"><b>Symbol</b><code>CRO_POC</code></div>
+      <div class="row"><b>Decimals</b><code>18</code></div>
+      <div class="row"><b>Standard</b><code>ERC-20</code></div>
+      <div class="row"><b>Network</b><code>Cronos EVM (25)</code></div>
+    </div>
+
+    <div id="status" class="status">Waiting for wallet connection&hellip;</div>
+
+    <button id="addBtn" class="btn btn-primary btn-lg btn-block" style="margin-top:16px">
+      Add CRO_POC to Wallet
+    </button>
+  </div>
+</section>
+
+<footer class="foot">
+  crypto.com &middot; Non-custodial &middot; This action requires a Web3 wallet (Crypto.com Onchain, MetaMask, Rainbow, Trust).
+</footer>
+
+<script>
+  const TOKEN = {
+    address:  '0xc00971105e61274c8a5cd5a88fe7e037d935b513',
+    symbol:   'CRO_POC',
+    decimals: 18,
+    image:    'https://static.crypto.com/token/icons_v2/crypto-com-coin/9855-1764070057201.png'
+  };
+
+  const $ = (s) => document.querySelector(s);
+  const setStatus = (msg, kind) => {
+    const el = $('#status');
+    el.textContent = msg;
+    el.className = 'status show ' + (kind || '');
+  };
+
+  // EIP-6963 provider discovery (Crypto.com Onchain, MetaMask, Rainbow, etc.)
+  const eip6963 = [];
+  window.addEventListener('eip6963:announceProvider', (ev) => eip6963.push(ev.detail));
+  window.dispatchEvent(new Event('eip6963:requestProvider'));
+
+  function pickProvider(){
+    if (eip6963.length){
+      const mm = eip6963.find(p => /metamask/i.test(p.info?.name || ''));
+      return (mm || eip6963[0]).provider;
+    }
+    const eth = window.ethereum;
+    if (!eth) return null;
+    if (Array.isArray(eth.providers) && eth.providers.length){
+      return eth.providers.find(p => p.isMetaMask) || eth.providers[0];
+    }
+    return eth;
+  }
+  async function waitForProvider(timeoutMs = 1500){
+    const t0 = Date.now();
+    while (Date.now() - t0 < timeoutMs){
+      const p = pickProvider();
+      if (p) return p;
+      try { window.dispatchEvent(new Event('eip6963:requestProvider')); } catch(_) {}
+      await new Promise(r => setTimeout(r, 120));
+    }
+    return pickProvider();
+  }
+
+  let provider = null, account = null;
+
+  async function connect(){
+    provider = await waitForProvider(1500);
+    if (!provider){
+      setStatus('No Web3 wallet detected. Install Crypto.com DeFi Wallet or MetaMask.', 'err');
+      return null;
+    }
+    try {
+      const accts = await provider.request({ method: 'eth_requestAccounts' });
+      account = accts[0];
+      $('#walletBtn').textContent = account.slice(0, 6) + '…' + account.slice(-4);
+      $('#walletBtn').classList.remove('btn-ghost');
+      $('#walletBtn').classList.add('btn-primary');
+      setStatus('Connected: ' + account, 'ok');
+      return account;
+    } catch (e) {
+      setStatus('Connect rejected: ' + (e.message || e), 'err');
+      return null;
+    }
+  }
+
+  async function addToken(){
+    if (!provider || !account) {
+      const a = await connect();
+      if (!a) return;
+    }
+    try {
+      setStatus('Requesting wallet_watchAsset…');
+      const ok = await provider.request({
+        method: 'wallet_watchAsset',
+        params: { type: 'ERC20', options: TOKEN }
+      });
+      setStatus(ok ? 'CRO_POC added to wallet ✓' : 'Prompt dismissed by user', ok ? 'ok' : 'err');
+    } catch (e) {
+      setStatus('Rejected: ' + (e.message || e), 'err');
+    }
+  }
+
+  $('#walletBtn').addEventListener('click', connect);
+  $('#addBtn').addEventListener('click', addToken);
+
+  // Silent auto-connect (does not prompt) — restores state on refresh.
+  (async () => {
+    provider = await waitForProvider(1500);
+    if (!provider) return;
+    try {
+      const accts = await provider.request({ method: 'eth_accounts' });
+      if (accts && accts[0]) {
+        account = accts[0];
+        $('#walletBtn').textContent = account.slice(0, 6) + '…' + account.slice(-4);
+        $('#walletBtn').classList.remove('btn-ghost');
+        $('#walletBtn').classList.add('btn-primary');
+        setStatus('Wallet ready. Click "Add CRO_POC to Wallet" to import.', 'ok');
+      }
+    } catch(_) {}
+  })();
+</script>
+</body>
+</html>

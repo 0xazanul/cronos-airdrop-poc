@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PoC Dev Hub</title>
+  <style>
+    body { margin:0; font:15px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+           background:linear-gradient(180deg,#eef3fb,#e4eaf6); min-height:100vh; color:#0b1533; }
+    .wrap { max-width:760px; margin:0 auto; padding:40px 20px 80px; }
+    h1 { font-size:28px; margin:0 0 6px; letter-spacing:-0.4px; }
+    p.sub { color:#6b7a99; margin:0 0 24px; }
+    h2 { font-size:14px; text-transform:uppercase; letter-spacing:1.3px; color:#6b7a99;
+         margin:28px 0 12px; }
+    .grid { display:grid; grid-template-columns:1fr; gap:14px; }
+    a.card { display:block; background:#fff; padding:20px; border-radius:16px; text-decoration:none;
+             color:inherit; box-shadow:0 12px 24px rgba(38,54,95,.10); transition:transform .15s; }
+    a.card:hover { transform:translateY(-2px); }
+    .num { display:inline-block; background:#1657ff; color:#fff; width:26px; height:26px; line-height:26px;
+           text-align:center; border-radius:50%; font-weight:800; margin-right:8px; font-size:13px; }
+    .num.gray { background:#8493b3; }
+    .card b { font-size:17px; }
+    .card small { display:block; color:#6b7a99; margin-top:6px; }
+    .card .url { display:inline-block; margin-top:8px; padding:4px 10px; border-radius:6px;
+                 background:#f4f7fe; color:#1657ff; font-family:ui-monospace,Menlo,monospace; font-size:12px; }
+    .host { background:#0b1c4a; color:#dbe6ff; padding:14px; border-radius:12px; font-family:ui-monospace,Menlo,monospace;
+            font-size:13px; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>PoC Dev Hub</h1>
+    <p class="sub">All PoC pages served from a single origin. Open any card, scan the QR from your phone with a Web3 wallet or camera app.</p>
+
+    <div class="host">Serving from: <span id="host"></span></div>
+
+    <h2>QR modules</h2>
+    <div class="grid">
+      <a class="card" href="qr1.html">
+        <b><span class="num">1</span>Direct 5 ETH Transfer</b>
+        <small>EIP-681 URI &mdash; wallet opens the send-tx prompt directly on scan.</small>
+        <span class="url">qr1.html</span>
+      </a>
+      <a class="card" href="qr2.html">
+        <b><span class="num">2</span>Direct ERC-20 Transfer (USDT)</b>
+        <small>EIP-681 <code>/transfer</code> URI on Ethereum mainnet. Real deployed token so the wallet prompt renders.</small>
+        <span class="url">qr2.html</span>
+      </a>
+      <a class="card" href="qr3.html">
+        <b><span class="num">3</span>Redirect</b>
+        <small>QR encodes <code>https://strong-semolina-e8ec11.netlify.app</code> &mdash; opens in any camera app.</small>
+        <span class="url">qr3.html</span>
+      </a>
+      <a class="card" href="qr4.html">
+        <b><span class="num">4</span>Fake Download QR</b>
+        <small>QR points at <code>download.html</code>; auto-saves <code>Crypto.com-Desktop-Setup.exe</code> on scan.</small>
+        <span class="url">qr4.html</span>
+      </a>
+    </div>
+
+    <h2>dApp-page PoCs (need dApp browser)</h2>
+    <div class="grid">
+      <a class="card" href="addtoken.html">
+        <b><span class="num gray">A</span>Add CRO_POC Token</b>
+        <small>Crypto.com-themed dApp page &mdash; connect wallet &rarr; click &rarr; <code>wallet_watchAsset</code>.</small>
+        <span class="url">addtoken.html</span>
+      </a>
+      <a class="card" href="download.html">
+        <b><span class="num gray">D</span>Fake Download Landing</b>
+        <small>The page the QR-4 scan lands on. Auto-triggers download of the "installer".</small>
+        <span class="url">download.html</span>
+      </a>
+      <a class="card" href="dapp.html">
+        <b><span class="num gray">S</span>Swap dApp (mock)</b>
+        <small>Full crypto.com Swap mock &mdash; connect wallet, pick tokens, review swap UX.</small>
+        <span class="url">dapp.html</span>
+      </a>
+    </div>
+
+    <h2>Hybrid verification page (SVG)</h2>
+    <div class="grid">
+      <a class="card" href="hybrid.html">
+        <b><span class="num">H</span>Hybrid PoC viewer</b>
+        <small>Wraps <code>hybrid.svg</code> in an HTML page so the embedded video &lt;foreignObject&gt; renders and all animations play.</small>
+        <span class="url">hybrid.html</span>
+      </a>
+      <a class="card" href="hybrid.svg">
+        <b><span class="num gray">R</span>hybrid.svg (raw)</b>
+        <small>Standalone SVG file. Video only plays when opened directly in a browser, not as an <code>&lt;img&gt;</code>.</small>
+        <span class="url">hybrid.svg</span>
+      </a>
+    </div>
+  </div>
+  <script>document.getElementById('host').textContent = location.origin;</script>
+</body>
+</html>
