@@ -133,16 +133,68 @@
       <rect x="286" y="310" width="168" height="320" rx="30" fill="#0b1c4a"/>
       <rect x="291" y="315" width="158" height="310" rx="26" fill="url(#phoneFace)"/>
     </g>
-    <!-- phone screen content: embedded auth-portal loop -->
+    <!-- phone screen content: pure-SVG auth-portal loop (CSP-safe) -->
     <g clip-path="url(#phoneClip)">
-      <foreignObject x="291" y="315" width="158" height="310">
-        <xhtml:video xmlns:xhtml="http://www.w3.org/1999/xhtml"
-                     autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline"
-                     style="width:100%;height:100%;object-fit:cover;display:block;background:#f7faff;border-radius:26px;">
-          <xhtml:source src="https://static2.crypto.com/auth-portal/assets/gif-images/2kjrnuePlCVE0qg7tWWTp.webm" type="video/webm"/>
-          <xhtml:source src="https://static2.crypto.com/auth-portal/assets/gif-images/2kjrnuePlCVE0qg7tWWTp.mp4"  type="video/mp4"/>
-        </xhtml:video>
-      </foreignObject>
+      <!-- screen background -->
+      <rect x="291" y="315" width="158" height="310" fill="url(#phoneFace)"/>
+      <!-- status bar -->
+      <rect x="291" y="315" width="158" height="34" fill="#0b1c4a"/>
+      <text x="370" y="336" fill="#ffffff" font-size="10.5" font-weight="700" text-anchor="middle" letter-spacing="0.5">Crypto.com App</text>
+
+      <!-- scanning viewfinder card -->
+      <rect x="311" y="368" width="118" height="118" rx="14" fill="#ffffff" stroke="#dbe6ff" stroke-width="1.5"/>
+      <!-- decorative mini QR pattern -->
+      <g fill="#0b1c4a">
+        <rect x="319" y="376" width="16" height="16" rx="1"/>
+        <rect x="405" y="376" width="16" height="16" rx="1"/>
+        <rect x="319" y="462" width="16" height="16" rx="1"/>
+        <rect x="325" y="382" width="4" height="4" fill="#ffffff"/>
+        <rect x="411" y="382" width="4" height="4" fill="#ffffff"/>
+        <rect x="325" y="468" width="4" height="4" fill="#ffffff"/>
+        <rect x="341" y="378" width="3" height="3"/><rect x="347" y="382" width="3" height="3"/>
+        <rect x="353" y="378" width="3" height="3"/><rect x="359" y="384" width="3" height="3"/>
+        <rect x="365" y="380" width="3" height="3"/><rect x="371" y="386" width="3" height="3"/>
+        <rect x="377" y="382" width="3" height="3"/><rect x="383" y="378" width="3" height="3"/>
+        <rect x="389" y="384" width="3" height="3"/><rect x="395" y="380" width="3" height="3"/>
+        <rect x="341" y="410" width="3" height="3"/><rect x="349" y="416" width="3" height="3"/>
+        <rect x="357" y="410" width="3" height="3"/><rect x="365" y="418" width="3" height="3"/>
+        <rect x="373" y="412" width="3" height="3"/><rect x="381" y="420" width="3" height="3"/>
+        <rect x="389" y="414" width="3" height="3"/><rect x="397" y="410" width="3" height="3"/>
+        <rect x="341" y="440" width="3" height="3"/><rect x="349" y="446" width="3" height="3"/>
+        <rect x="357" y="442" width="3" height="3"/><rect x="365" y="448" width="3" height="3"/>
+        <rect x="373" y="440" width="3" height="3"/><rect x="381" y="446" width="3" height="3"/>
+        <rect x="389" y="442" width="3" height="3"/><rect x="397" y="448" width="3" height="3"/>
+        <rect x="341" y="466" width="3" height="3"/><rect x="349" y="472" width="3" height="3"/>
+        <rect x="357" y="468" width="3" height="3"/><rect x="365" y="474" width="3" height="3"/>
+      </g>
+      <!-- corner brackets on the mini QR -->
+      <g stroke="#1657ff" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M319 378 v-6 h6"/><path d="M421 378 v-6 h-6"/>
+        <path d="M319 476 v6 h6"/><path d="M421 476 v6 h-6"/>
+      </g>
+      <!-- sweeping scan line on the mini QR -->
+      <rect x="311" y="368" width="118" height="2.5" fill="#22d3ee" opacity="0.9">
+        <animate attributeName="y" values="368;486;368" keyTimes="0;0.5;1" dur="2.2s" repeatCount="indefinite"/>
+      </rect>
+
+      <!-- copy -->
+      <text x="370" y="510" fill="#0b1533" font-size="12" font-weight="800" text-anchor="middle">Approve sign-in?</text>
+      <text x="370" y="526" fill="#6b7a99" font-size="9.5" text-anchor="middle">crypto.com &#183; New browser</text>
+
+      <!-- action buttons -->
+      <rect x="308" y="542" width="58" height="26" rx="13" fill="#eef1f6"/>
+      <text x="337" y="559" fill="#6b7a99" font-size="10" font-weight="700" text-anchor="middle">Deny</text>
+      <rect x="374" y="542" width="58" height="26" rx="13" fill="url(#brand)"/>
+      <text x="403" y="559" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">Approve</text>
+
+      <!-- tap ripple over Approve -->
+      <circle cx="403" cy="555" r="3" fill="#ffffff" opacity="0">
+        <animate attributeName="r" values="3;26" dur="1.4s" begin="1.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.55;0" dur="1.4s" begin="1.2s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- home indicator -->
+      <rect x="345" y="608" width="50" height="4" rx="2" fill="#0b1c4a" opacity="0.4"/>
     </g>
 
     <!-- floating dots that arc from phone to right side -->
@@ -288,7 +340,7 @@
     <rect x="0" y="0" width="320" height="46" rx="23" fill="#f4f7fe" stroke="#e2e9f7" stroke-width="1"/>
     <circle cx="27" cy="23" r="16" fill="#ffffff" stroke="#e2e9f7" stroke-width="1"/>
     <image x="11" y="7" width="32" height="32" clip-path="url(#croClip)" preserveAspectRatio="xMidYMid slice"
-           xlink:href="https://static.crypto.com/token/icons_v2/crypto-com-coin/9855-1764070057201.png"/>
+           xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAACzVBMVEUAAAD////////////////////////////////////////////////////////////////////////////////v8vfv8vbv8fbv8fXv8fTv8PTv8PPv8PLf5e7f5e3f4ujf4ejf4eff4ebf4ObP2OXP2OTP1eHP096/y9y/yNe/x9W/xtW/xtS/xdS/xdO/xdK/w9G/w8+/wc2vvdOvuc2vt8mgsMufsMulrcGfqb+fp7ufprifpbmQo8OQo8KPo8KQmbGQlamPlKmAlrqAlrl/lrmAlbmAlbiAlbeAlLeAlLaAk7WAk7SAkrSAkrOAkrKAkbKAkbGAkLCAkK+Aj66Aj61/j62Ajq2AjqyAjquAjauAjap/jamAjKp/jKiAi6d/i6eAiaSAiaN/iaSAh6B/h6CAhZxwibFwibB/hZxvibFwf6Bvf6BwfZxvfZxvfJpgfKhgbpBQb6BQb59UYYVAYpdAYpZQXIBAWYdAWIZAVoJAVYFAU35AUn1AUnxAUHkwVI5AT3dCTnRATXNASm9ASm5AR2pAR2kgSIUgR4UwOmIgOm8gOm4QO30QO3wgNmgQOn0gNmcQOnwgNWcgM2IgMmIgMmEgMmAhKlMQLWYgJ08QKV8ALXQALXMALHMALHIALHEAK3EAK3AAK28QJlsAKm8AKm4QJVoAKW4QJVgAKWwQJFgAKGwAKGsAKGoAJ2oAJ2kAJ2gAJmkQIlMAJmgAJmcAJmYAJWcAJWYAJWUAJGUQH04AI2MQHk0AImEAIWAAIV8AIF4QHEgAIF0QG0gAH1wAH1sAHloAHVgAHFcAHFYAG1UAGlUAGlMAGVMAGVEAGFEAGFAAGE8AF08AF04AF00AFk0AFkwAFUwAFUoAFEoAFEgAE0gAE0cAE0YAEkcAEkYAEUUAEUQAEEMAEEIAD0EADj8ADT4ADT0ADDwADDsACzoACzkACjgACjdNejr+AAAAFHRSTlMAECBAUGBvcH+Aj5CfoK+wv8/f7+QigY8AAATRSURBVHjarZj5X1RVGIfhggEKNA7HUSImLKppUdRKss1qQGQJUKRs37O9sZpps9RsmWnB9jIvixjtEWFIYsYQkZZRQfuu4pri3+C5M++Zc8/L5dyZ4T7nzgwffng+837n3PeecxKiQ7GlKwnWkTieUKxTpmaREPYUS3RJdhLBPm7sOhsRsCljCy8dPLPeCMwmlLFFmcjCO/6p4WFV9ThJiKzUOH3JEF7OLQcpKmWJk0cZf3gXfXVAQ9WI1G2PtW6FhTfzyf37tLFPDRNw8SjjCG/q43sZIORRktSYZ17OTVv2RFA57skxRamw8M7dPKQDZGKUmUoU1ZIwM1bt2qkN9qYKBPJJmPEmynEQXt79//0b4h9t7KB/qAgPmkLSqXLM9Rv+Qtxzq4px8ykka1KUs1//A7HyOEJyPdhocjceBdUWLP8N8UoBCVHox8oVzlEbW9JEEiJ76S+Un7ULeO8aAghKHGWyoFMyQXftWwODg4MDA4P0I8TA3dmEY1D3C26jujNIiOkv/4B47GSCyL1vtCjTsXDasn7E6mmEI6nb6zQSztmOWHvVJGLM3BHK2QbCK74RuXMK0eF0SqMsMhAu3qbnkdOIDocbuitX+qRC7Ue+bCvnuTOJngtegvDFKCVC7Zar7WOsuVSo1uVVUXcFip8XhDYkXNQDPCSG58XzmJPrlQlruruD3Ro1QnihanF3ZRTJhAu/ABbqckI6FKVcuOBzYIEQHuDz6JTOqITVmzZ1aVdXFYSnU/hd4q/qmRyFsLKjs2Njx8bOjkr4fiqjbi66QXzUby6s+KStva2trb29Aglvn8RvEO43F5a3tn5ER2truSD05Yu9pq4Y/KbCsveBMr3wXoJgOnNh6dtAqV7oIRLkwvnNwHyLhCWNTXQ0NjWVWCQsUuvpUOvriywTAjEI5zU0NNQ3UOZZJCxZ17iuSRslFglL1ze3tLSsb2kutUhY9i5QJhVKJ7aD6Cj/ECiPVkiNQo8+0au6df+o+BioiE6I275jCeqwl3xKaaevyhiE1HA+e/jh9WvVZ5ROOqqiEDo8Ytt3BUY22OouoFouBPL1PdqrAry/oseGuRDaPqKukADowSYXAo5ipIP+CtQEg8HuIKVGJvRK1kW+XKJjyoN0XdDb29vTs0gihEUpx+XH4YGudk3f1330otQiYYYgNFwXwcOJc+qzWzmLCSFHGwuBFWLddJcC4QGnPLxNz+Ww+sJCybpIDO+Ob0WuNBAWqogAjxJx9drtjO/ooNccLBQWpShKzPTV/ZTv+8Pv2uey0wkWGsxj3GuAkx6lu40fI4NeL55FCBYqGXxRKo0y+66fEO9cl224d062o3ks9hrgwg9+RSwF3cSkBEwKU/pHi7Lg1d8Ry2FbmZWCZFC3dIuYt/JPxGvnkDATEhOMUewsShXjueFvxIYboVpbkuyIYNQodyAeyINqTY5GlAm4uwK7Iuykr1UzSJg0qFamzDSMcjdjaPfQ5vNiOfyDunF33RNhy805sItH4UlIG9ld9zKemArhmVSLpxDurvvDPDMz3nNJxS5G+T/lwJcXE+lUMY8SuivlEOW2Y/kRSFykZfEoDw8/fYIkvFijPMP/5iwWXpw6fPgnCS/OKGHmWUGKnYVniQ6ihCZlnTLaM/sjwGDqiXbHwCAAAAAASUVORK5CYII="/>
     <text x="54" y="28" class="t" font-size="14" font-weight="800" letter-spacing="0.6">5,000 CRO RESERVED</text>
     <circle cx="238" cy="23" r="3" fill="#f59e0b" class="live"/>
     <text x="250" y="28" fill="#b4791a" font-size="14" font-weight="700" letter-spacing="0.6">09:57</text>
