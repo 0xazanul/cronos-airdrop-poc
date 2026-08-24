@@ -1,0 +1,63 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-family="'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a1330"/><stop offset="0.55" stop-color="#0b1c4a"/><stop offset="1" stop-color="#071026"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f7bff"/><stop offset="1" stop-color="#1657ff"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f9dff"/><stop offset="1" stop-color="#8b5cff"/></linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.7"><stop offset="0" stop-color="#1e60ff" stop-opacity="0.45"/><stop offset="1" stop-color="#1e60ff" stop-opacity="0"/></radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="22" flood-color="#050b1f" flood-opacity="0.6"/></filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#glow)"/>
+  <rect x="1" y="1" width="1198" height="628" rx="27" fill="none" stroke="#2b4a8f" stroke-opacity="0.5" stroke-width="1.5"/>
+
+  <g transform="translate(72,64)">
+    <g transform="translate(0,-6)">
+      <path d="M26 0 L52 15 L52 45 L26 60 L0 45 L0 15 Z" fill="url(#acc)"/>
+      <path d="M26 10 L43 20 L43 40 L26 50 L9 40 L9 20 Z" fill="#0b1c4a"/>
+      <path d="M26 18 L36 24 L36 36 L26 42 L16 36 L16 24 Z" fill="url(#acc)"/>
+    </g>
+    <text x="72" y="20" fill="#ffffff" font-size="26" font-weight="700" letter-spacing="0.5">Cronos</text>
+    <text x="72" y="46" fill="#8fb4ff" font-size="16" font-weight="500">powered by crypto.com</text>
+    <g transform="translate(560,4)">
+      <rect x="0" y="0" width="216" height="44" rx="22" fill="#0f2350" stroke="#2f7bff" stroke-opacity="0.6"/>
+      <circle cx="30" cy="22" r="11" fill="#22c55e"/>
+      <path d="M25 22 l4 4 l7 -8" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="50" y="27" fill="#dbe7ff" font-size="15" font-weight="600">Verified &#183; crypto.com</text>
+    </g>
+  </g>
+
+  <g transform="translate(72,188)">
+    <rect x="0" y="0" width="150" height="34" rx="17" fill="#1a2f66"/>
+    <text x="20" y="23" fill="#8fb4ff" font-size="15" font-weight="700" letter-spacing="2">LIVE AIRDROP</text>
+    <text x="0" y="108" fill="#ffffff" font-size="76" font-weight="800" letter-spacing="-1">Cronos Airdrop</text>
+    <text x="2" y="160" fill="#9fc0ff" font-size="28" font-weight="500">Claim your allocation of</text>
+    <text x="0" y="212" fill="url(#acc)" font-size="54" font-weight="800">5,000 CRO</text>
+    <g transform="translate(0,250)" filter="url(#soft)">
+      <rect x="0" y="0" width="300" height="64" rx="32" fill="url(#cta)"/>
+      <text x="150" y="41" fill="#ffffff" font-size="23" font-weight="700" text-anchor="middle">Claim now &#8594;</text>
+    </g>
+    <text x="0" y="356" fill="#6f8bc4" font-size="15">Reward window closes soon</text>
+  </g>
+
+  <g transform="translate(772,168)" filter="url(#soft)">
+    <rect x="0" y="0" width="330" height="330" rx="26" fill="#ffffff"/>
+    <text x="165" y="46" fill="#0b1c4a" font-size="22" font-weight="800" text-anchor="middle">Scan to get coins</text>
+    <rect x="55" y="66" width="220" height="220" rx="10" fill="#ffffff" stroke="#e6ecf7" stroke-width="2"/>
+    <image x="60" y="71" width="210" height="210" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAJkAQMAAACF36//AAAABlBMVEUAAAD///+l2Z/dAAAAAnRSTlP//8i138cAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAPoSURBVHic7dlBktswDERR3kD3v6VugMQmugEqriwSY1af5VLJFPk4myYoz4pvtoWGhjai3ctt3/++vm6ueH3Wa7l9n/17wG73OR0NDW1Mq0cRaV5nT0jej3x9yGhoaHNaC3sKO+a6SXDV091qi8hHaGho89p7wKu9hazIfbrKdI55lmw0NLR57f5kul3VH72Co6Gh/YAW6m8F12YO0Kyjx9f425kcDQ3t/zW3uP/lU9PR0NCGtN7ud9hVfFd71c250U7X9zn31dDQ0Ga1pZ+ecnyIclHuw9oRuj5oaGijmhLtLCe4taseWV5qbQdAQ0Ob1ZbjfJ9mL8T7pvledPVTNBoa2nc1v662/+xs+bNp2YhxNDS0MW1/etuzaom23DFeq+QNGhraqBbHb1A10em+FHVX5OuPR2hoaHOapmfke3XuT9s1VJr7VzQ0tCkt2sHYMe/xb7uBS7MHZ+RzIhoa2pR2JLrV5WMT8KG6FeXVy/SFhoY2qak/9N5aYT9rce0PEf3POFKPhoY2oblTYIU9NPg8WueAK1cRiIaGNqXlgBbzuqry9s7qaVUbDQ1tUFOE/Vkq0L726etRrPtINDS0IS2U4jPj0feBx1awtIrL9KpTNBoa2oTmnhy8U7xUiNWc8Ye2fNhGQ0Mb0lyXI3yzVHATCX294miehYaGNqz1UEffBK4Pp+XNHFPqERoa2oymjFd+XZR149T3+OeeEFnK0dDQBjUfjHeQ3+1Zl51x7QmVdz16r4WGhjajOeZ6yT16HnuCavHyL1Su4IGGhjaoeWRO1D7giXvAsS2s3AFyQEs9Ghra97V+cvbB2EtoYmptmK9m0dDQprRQwJeqrYf1o7LSHb1ex7ldoKGhjWlxH4O777yHqrNjXgM8BQ0NbUhzCe5B1oCls3SlO54nbS+HhoY2pe2JrShbrlC36W522l+ChoY2pt3rGKa8e7rlut5Hv76ioaHNaHfVZRffpdfeyrXbnQv1Yq0TOBoa2oy2HUe+1VyDlfGr5npb2P1roaGhDWp9zBFznaVX/yWqnbdzgEw0NLRZLeo8nFMa6Fle2p/N6g9AQ0Mb05TrPbie3qd/Fehh/SsaGtqUphOyo71crKNO1/b7WtXQ0NBGtd7am2zlXfc97GVGLY2GhjaltfBml6uwZkU/Wst3f/bcCw0NbU5z5KO91R7Zb1evK6H2CjQ0tEGtYptH6LxXxlNQ9uPT6RoNDe3HtBrp3518tPZPUkr9829AQ0P7Ee2Yokerv+c64/JLRkNDm9N2U0Uu8Mo4Z7tqWI3UcpV6NDS0Ac0tlPd9H1V2/yjT7mwsGhralPbNhoaGNqH9AgvXPjQ0sbt5AAAAAElFTkSuQmCC"/>
+    <g transform="translate(133,300)">
+      <path d="M14 0 L28 8 L28 24 L14 32 L0 24 L0 8 Z" fill="url(#acc)"/>
+      <path d="M14 6 L23 11 L23 21 L14 26 L5 21 L5 11 Z" fill="#ffffff"/>
+    </g>
+    <text x="176" y="322" fill="#5f7bb8" font-size="15" font-weight="600">Cronos &#183; $CRO</text>
+  </g>
+
+  <g transform="translate(72,566)">
+    <rect x="0" y="-2" width="1056" height="1.5" fill="#2b4a8f" fill-opacity="0.5"/>
+    <text x="0" y="32" fill="#c9d8ff" font-size="17" font-weight="600">PoC by 0xazanul</text>
+    <text x="150" y="32" fill="#5f7bb8" font-size="16">&#183;  served from the trusted crypto.com origin via /cdn-cgi/image open proxy</text>
+    <text x="1056" y="32" fill="#5f7bb8" font-size="16" text-anchor="end">HackerOne</text>
+  </g>
+</svg>
